@@ -13,6 +13,38 @@ const App = () => {
   [feedbacks.neutral, setNeutral] = useState(0);
   [feedbacks.bad, setBad] = useState(0);
 
+  const Heading = ({ text }) => <h1>{text}</h1>;
+  const Button = ({ text, onClick }) => (
+    <button onClick={onClick}>{text}</button>
+  );
+  const Stat = ({ text, value }) => (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  );
+
+  const Statistics = ({ data }) => {
+    const stats = {
+      ...data,
+      all: data["good"] + data["neutral"] + data["bad"],
+    };
+    if (!stats.all) return "No feedback given";
+
+    stats.average = (stats.good - stats.bad) / stats.all;
+    stats.positive = (stats.good / stats.all) * 100 + "%";
+
+    return (
+      <table>
+        <tbody>
+          {Object.keys(stats).map((k) => (
+            <Stat key={k} text={k} value={stats[k]} />
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+
   return (
     <div>
       <Heading text="give feedback" />
@@ -22,33 +54,8 @@ const App = () => {
         onClick={() => setNeutral(feedbacks.neutral + 1)}
       />
       <Button text="bad" onClick={() => setBad(feedbacks.bad + 1)} />
-      <Statistics data={feedbacks} />
-    </div>
-  );
-};
-
-const Heading = ({ text }) => <h1>{text}</h1>;
-const Button = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
-const Stat = ({ text, value }) => (
-  <div>
-    {text} {value}
-  </div>
-);
-
-const Statistics = ({ data }) => {
-  const stats = {
-    ...data,
-    all: data["good"] + data["neutral"] + data["bad"],
-  };
-  stats.average = (stats.good - stats.bad) / stats.all;
-  stats.positive = (stats.good / stats.all) * 100 + "%";
-
-  return (
-    <div>
       <Heading text="statistics" />
-      {Object.keys(stats).map((k) => (
-        <Stat key={k} text={k} value={stats[k]} />
-      ))}
+      <Statistics data={feedbacks} />
     </div>
   );
 };
