@@ -1,12 +1,56 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 const App = () => {
   // save clicks of each button to its own state
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
 
-  return <div>code here</div>;
+  const feedbacks = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+  let setGood, setNeutral, setBad;
+  [feedbacks.good, setGood] = useState(0);
+  [feedbacks.neutral, setNeutral] = useState(0);
+  [feedbacks.bad, setBad] = useState(0);
+
+  return (
+    <div>
+      <Heading text="give feedback" />
+      <Button text="good" onClick={() => setGood(feedbacks.good + 1)} />
+      <Button
+        text="neutral"
+        onClick={() => setNeutral(feedbacks.neutral + 1)}
+      />
+      <Button text="bad" onClick={() => setBad(feedbacks.bad + 1)} />
+      <Statistics data={feedbacks} />
+    </div>
+  );
+};
+
+const Heading = ({ text }) => <h1>{text}</h1>;
+const Button = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
+const Stat = ({ text, value }) => (
+  <div>
+    {text} {value}
+  </div>
+);
+
+const Statistics = ({ data }) => {
+  const stats = {
+    ...data,
+    all: data["good"] + data["neutral"] + data["bad"],
+  };
+  stats.average = (stats.good - stats.bad) / stats.all;
+  stats.positive = (stats.good / stats.all) * 100 + "%";
+
+  return (
+    <div>
+      <Heading text="statistics" />
+      {Object.keys(stats).map((k) => (
+        <Stat key={k} text={k} value={stats[k]} />
+      ))}
+    </div>
+  );
 };
 
 export default App;
