@@ -1,0 +1,16 @@
+title Single page app - new note
+
+note over browser:
+Data in the form input field is sent as part of the POST request in json format
+{content: "test part0", date: "2022-02-11T19:42:45.663Z"}
+end note
+
+browser->server:  HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server:
+Server read data submitted through the form from the body of the POST request,
+create a new note and return status 201 and content
+{"message":"note created"}
+end note
+
+server-->browser: Status 209, json content

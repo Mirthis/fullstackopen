@@ -8,7 +8,11 @@ const Content = (props) => {
   return (
     <div>
       {props.parts.map((part) => (
-        <Part part={part.name} exercises={part.exercises} />
+        <Part
+          key={part.name.replace(" ", "_")}
+          part={part.name}
+          exercises={part.exercises}
+        />
       ))}
     </div>
   );
