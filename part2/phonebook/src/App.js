@@ -6,6 +6,8 @@ const App = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    if (persons.find((i) => i.name === newName))
+      return alert(`${newName} is already added to phonebook`);
     setPersons(persons.concat({ name: newName }));
     setNewName("");
   };
