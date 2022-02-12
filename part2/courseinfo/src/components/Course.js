@@ -6,7 +6,11 @@ const Header = ({ course }) => {
 
 const Total = ({ course }) => {
   const sum = course.parts.reduce((acc, curr) => acc + curr.exercises, 0);
-  return <p>Number of exercises {sum}</p>;
+  return (
+    <p>
+      <b>Total of {sum} exercises</b>
+    </p>
+  );
 };
 
 const Part = ({ part }) => {
