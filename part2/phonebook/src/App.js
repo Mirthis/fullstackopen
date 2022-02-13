@@ -50,11 +50,12 @@ const App = () => {
     setFilter(e.target.value);
   };
 
-  const showPersons = ""
-    ? persons
-    : persons.filter((p) =>
-        p.name.toLowerCase().includes(filter.toLowerCase())
-      );
+  const showPersons =
+    filter === ""
+      ? persons
+      : persons.filter((p) =>
+          p.name.toLowerCase().includes(filter.toLowerCase())
+        );
 
   return (
     <div>
