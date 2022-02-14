@@ -7,11 +7,11 @@ import Country from "./components/Country";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [countries, setCountries] = useState([]);
-  const [displayedCountry, setDisplayedCountry] = useState({});
+  const [displayedCountry, setDisplayedCountry] = useState();
 
   const changeSearchTerm = (e) => {
     setSearchTerm(e.target.value);
-    setDisplayedCountry({});
+    setDisplayedCountry();
   };
 
   const showCountry = (e) => {
@@ -36,20 +36,15 @@ function App() {
 
   if (
     showCountries.length === 1 &&
-    (!displayedCountry.name || displayedCountry.name !== showCountries[0].name)
+    displayedCountry?.name !== showCountries[0].name
   )
     setDisplayedCountry({ ...showCountries[0] });
 
-  const countryEl = displayedCountry.name ? (
-    <Country country={displayedCountry} />
-  ) : (
-    ""
-  );
   return (
     <div>
       <SearchForm value={searchTerm} onChange={changeSearchTerm} />
       <CountryList countries={showCountries} onShowClick={showCountry} />
-      {countryEl}
+      {displayedCountry && <Country country={displayedCountry} />}
     </div>
   );
 }
