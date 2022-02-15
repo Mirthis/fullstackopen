@@ -25,18 +25,28 @@ const App = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    if (persons.find((i) => i.name === newName))
-      return alert(`${newName} is already added to phonebook`);
     const newPerson = {
       name: newName,
       number: newNumber,
-      //id: persons.length + 1,
     };
-    personsService.create(newPerson).then((data) => {
-      setPersons(persons.concat(data));
-      setNewName("");
-      setNewNumber("");
-    });
+    const knownPerson = persons.find((i) => i.name === newName);
+    if (knownPerson) {
+      const msg = `${newName} is already added to phonebook, replace the old number with a new one`;
+      if (!window.confirm(msg)) {
+        return;
+      }
+      personsService
+        .update(knownPerson.id, newPerson)
+        .then((data) =>
+          setPersons(persons.map((p) => (p.id === data.id ? data : p)))
+        );
+    } else {
+      personsService.create(newPerson).then((data) => {
+        setPersons(persons.concat(data));
+      });
+    }
+    setNewName("");
+    setNewNumber("");
   };
 
   const onNameChange = (e) => {
@@ -49,6 +59,16 @@ const App = () => {
 
   const onFilterChange = (e) => {
     setFilter(e.target.value);
+  };
+
+  const onDeleteClick = (e) => {
+    const toDeleteId = +e.target.dataset.id;
+    const toDeleteObj = persons.find((p) => p.id === toDeleteId);
+    if (window.confirm(`Delete ${toDeleteObj.name}`)) {
+      personsService.delete_person(toDeleteId).then((_) => {
+        setPersons(persons.filter((p) => p.id !== toDeleteId));
+      });
+    }
   };
 
   const showPersons =
@@ -75,7 +95,7 @@ const App = () => {
         number={newNumber}
       />
       <h3>Numbers</h3>
-      <Persons persons={showPersons} />
+      <Persons persons={showPersons} onDeleteClick={onDeleteClick} />
     </div>
   );
 };
