@@ -3,12 +3,20 @@ import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
 import personsService from "./services/persons";
+import Notification from "./components/Notification";
+import "./index.css";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [notification, setNotification] = useState(null);
+
+  const setNotificationObj = function (message, type = "success") {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 5000);
+  };
 
   const loadData = () => {
     personsService
@@ -23,7 +31,9 @@ const App = () => {
     try {
       const data = await personsService.update(id, personData);
       setPersons(persons.map((p) => (p.id === data.id ? data : p)));
+      setNotificationObj(`Contact "${data.name}" updated!`);
     } catch (err) {
+      setNotificationObj("Error updating contact", "error");
       console.log(err);
     }
   };
@@ -32,7 +42,9 @@ const App = () => {
     try {
       const data = await personsService.create(personData);
       setPersons(persons.concat(data));
+      setNotificationObj(`New contact "${data.name}" added to the phonebook!`);
     } catch (err) {
+      setNotificationObj("Error creating contact", "error");
       console.log(err);
     }
   };
@@ -40,8 +52,13 @@ const App = () => {
   const deletePerson = async function (id) {
     try {
       await personsService.delete_person(id);
+      const personName = persons.find((p) => p.id === id).name;
       setPersons(persons.filter((p) => p.id !== id));
+      setNotificationObj(
+        `New contact "${personName}" removed from the phonebook!`
+      );
     } catch (err) {
+      setNotificationObj("Error deleting contact", "error");
       console.log(err);
     }
   };
@@ -54,7 +71,7 @@ const App = () => {
     };
     const knownPerson = persons.find((i) => i.name === newName);
     if (knownPerson) {
-      const msg = `${newName} is already added to phonebook, replace the old number with a new one`;
+      const msg = `${newName} is already added to phonebook, replace the old number with a new one?`;
       if (!window.confirm(msg)) {
         return;
       }
@@ -81,7 +98,7 @@ const App = () => {
   const onDeleteClick = (e) => {
     const toDeleteId = +e.target.dataset.id;
     const toDeleteObj = persons.find((p) => p.id === toDeleteId);
-    if (window.confirm(`Delete ${toDeleteObj.name}`)) {
+    if (window.confirm(`Delete ${toDeleteObj.name}?`)) {
       deletePerson(toDeleteId);
     }
   };
@@ -96,6 +113,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      {notification && (
+        <Notification message={notification.message} type={notification.type} />
+      )}
       <Filter
         onSubmit={submitForm}
         filter={filter}
