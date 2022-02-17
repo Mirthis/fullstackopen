@@ -44,7 +44,10 @@ const App = () => {
       setPersons(persons.concat(data));
       setNotificationObj(`New contact "${data.name}" added to the phonebook!`);
     } catch (err) {
-      setNotificationObj("Error creating contact", "error");
+      setNotificationObj(
+        "Error creating contact. Contact may no longer exist.",
+        "error"
+      );
       console.log(err);
     }
   };
@@ -58,7 +61,10 @@ const App = () => {
         `New contact "${personName}" removed from the phonebook!`
       );
     } catch (err) {
-      setNotificationObj("Error deleting contact", "error");
+      setNotificationObj(
+        "Error deleting contact. Contact may no longer exist.",
+        "error"
+      );
       console.log(err);
     }
   };
