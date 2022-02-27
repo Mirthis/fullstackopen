@@ -21,7 +21,7 @@ const App = () => {
       setNotificationObj('Login succesfull', 'success')
       return true
     } catch (error) {
-      setNotificationObj('Login failed', 'error')
+      setNotificationObj('Wrong username or password', 'error')
       return false
     }
   }
@@ -36,7 +36,7 @@ const App = () => {
     try {
       const data = await blogService.create(blogData)
       setBlogs(blogs.concat(data))
-      setNotificationObj(`New blog "${data.title}" created!`)
+      setNotificationObj(`A new blog "${data.title}" by ${data.author} added!`)
       return data
     } catch (err) {
       setNotificationObj(err.response.data.error, 'error')
