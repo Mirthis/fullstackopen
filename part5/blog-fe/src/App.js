@@ -47,6 +47,18 @@ const App = () => {
     }
   }
 
+  const updateBlog = async blogData => {
+    try {
+      const data = await blogService.update(blogData)
+      setBlogs(blogs.map(b => (b.id !== data.id ? b : data)))
+      setNotificationObj(`Like for "${data.title}" submitted!`)
+      return data
+    } catch (err) {
+      setNotificationObj(err.response.data.error, 'error')
+      console.log(err.response.data)
+    }
+  }
+
   useEffect(() => {
     blogService.getAll().then(blogs => setBlogs(blogs))
   }, [])
@@ -81,7 +93,7 @@ const App = () => {
           <Togglable buttonLabel="create new blog" ref={blogFormRef}>
             <CreateBlogForm createBlogHandler={createBlog} />
           </Togglable>
-          <BlogsList blogs={blogs} />
+          <BlogsList blogs={blogs} likeHandler={updateBlog} />
         </div>
       )}
     </div>
