@@ -18,6 +18,7 @@ const App = () => {
     try {
       const user = await loginService.login({ username, password })
       setUser(user)
+      window.localStorage.setItem('loggedUser', JSON.stringify(user))
       setUsername('')
       setPassword('')
       setNotificationObj('Login succesfull', 'success')
@@ -26,8 +27,22 @@ const App = () => {
     }
   }
 
+  const handleLogout = () => {
+    window.localStorage.removeItem('loggedUser')
+    setUser(null)
+    setNotificationObj('Logout succesfull', 'success')
+  }
+
   useEffect(() => {
     blogService.getAll().then(blogs => setBlogs(blogs))
+  }, [])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
   }, [])
 
   const setNotificationObj = function (message, type = 'success') {
@@ -51,7 +66,9 @@ const App = () => {
       ) : (
         <div>
           <h2>blogs</h2>
-          <p>{user.name} logged in</p>
+          <p>
+            {user.name} logged in<button onClick={handleLogout}>Logout</button>
+          </p>
           <BlogsList blogs={blogs} />
         </div>
       )}
