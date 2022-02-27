@@ -4,11 +4,12 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
-    react: true,
+    browswer: true,
   },
-  extends: 'eslint:recommended',
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
+    sourceType: 'module',
   },
   rules: {
     indent: ['error', 2],
