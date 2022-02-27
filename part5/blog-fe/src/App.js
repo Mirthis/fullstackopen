@@ -77,6 +77,8 @@ const App = () => {
     setTimeout(() => setNotification(null), 5000)
   }
 
+  const sortedBlogs = blogs.sort((a, b) => b.likes - a.likes)
+
   return (
     <div>
       {notification && (
@@ -93,7 +95,7 @@ const App = () => {
           <Togglable buttonLabel="create new blog" ref={blogFormRef}>
             <CreateBlogForm createBlogHandler={createBlog} />
           </Togglable>
-          <BlogsList blogs={blogs} likeHandler={updateBlog} />
+          <BlogsList blogs={sortedBlogs} likeHandler={updateBlog} />
         </div>
       )}
     </div>
