@@ -4,7 +4,7 @@ import blogService from './services/blogs'
 import loginService from './services/login'
 import './index.css'
 import LoginForm from './components/LoginForm'
-import BlogsList from './components/BlogsList'
+import Blog from './components/Blog'
 import CreateBlogForm from './components/CreateBlogForm'
 import Togglable from './components/Togglable'
 
@@ -37,6 +37,7 @@ const App = () => {
   const createBlog = async blogData => {
     try {
       const data = await blogService.create(blogData)
+      data.user = user
       setBlogs(blogs.concat(data))
       setNotificationObj(`A new blog "${data.title}" by ${data.author} added!`)
       blogFormRef.current.toggleVisibility()
@@ -52,6 +53,18 @@ const App = () => {
       const data = await blogService.update(blogData)
       setBlogs(blogs.map(b => (b.id !== data.id ? b : data)))
       setNotificationObj(`Like for "${data.title}" submitted!`)
+      return data
+    } catch (err) {
+      setNotificationObj(err.response.data.error, 'error')
+      console.log(err.response.data)
+    }
+  }
+
+  const deleteBlog = async blogData => {
+    try {
+      const data = await blogService.remove(blogData)
+      setBlogs(blogs.filter(b => b.id !== blogData.id))
+      setNotificationObj(`Blog "${blogData.title}" deleted!`)
       return data
     } catch (err) {
       setNotificationObj(err.response.data.error, 'error')
@@ -95,7 +108,17 @@ const App = () => {
           <Togglable buttonLabel="create new blog" ref={blogFormRef}>
             <CreateBlogForm createBlogHandler={createBlog} />
           </Togglable>
-          <BlogsList blogs={sortedBlogs} likeHandler={updateBlog} />
+          <div>
+            {sortedBlogs.map(blog => (
+              <Blog
+                key={blog.id}
+                blog={blog}
+                likeHandler={updateBlog}
+                canBeDeleted={blog.user.username === user.username}
+                deleteHandler={deleteBlog}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>

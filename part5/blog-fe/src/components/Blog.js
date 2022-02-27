@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import React from 'react'
 
-const Blog = ({ blog, likeHandler }) => {
+const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
   const [visible, setVisible] = useState(false)
 
   const blogStyle = {
@@ -16,12 +16,23 @@ const Blog = ({ blog, likeHandler }) => {
     likeHandler({ ...blog, likes: blog.likes + 1 })
   }
 
+  const handleDelete = () => {
+    const confirmed = window.confirm(`Delete ${blog.title} by ${blog.author}?`)
+    if (confirmed) {
+      deleteHandler(blog)
+    }
+  }
+
   const blogDetails = () => (
     <>
       <div>{blog.url}</div>
       <div>
         likes: {blog.likes}
         <button onClick={handleLike}>like</button>
+      </div>
+      <div>owner: {blog.user.username}</div>
+      <div>
+        {canBeDeleted && <button onClick={handleDelete}>Remove</button>}
       </div>
     </>
   )
