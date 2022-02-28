@@ -1,26 +1,47 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import Blog from './Blog'
 
-test('renders content', () => {
-  const blog = {
-    title: 'test blog',
-    author: 'test author',
-    url: 'http://test.url',
-  }
+describe('<Blog />', () => {
+  let blog
+  let container
 
-  const mockHandler = jest.fn()
+  beforeEach(() => {
+    blog = {
+      title: 'test blog',
+      author: 'test author',
+      url: 'http://test.url',
+      user: { userna: 'root' },
+      likes: 10,
+    }
 
-  const { container } = render(
-    <Blog
-      blog={blog}
-      likeHandler={mockHandler}
-      canBeDeleted={false}
-      deleteHandler={mockHandler}
-    />
-  )
+    const mockHandler = jest.fn()
 
-  const div = container.querySelector('.blog')
-  expect(div).toHaveTextContent(`${blog.title} ${blog.author}`)
+    container = render(
+      <Blog
+        blog={blog}
+        likeHandler={mockHandler}
+        canBeDeleted={false}
+        deleteHandler={mockHandler}
+      />
+    ).container
+  })
+
+  test('renders content', () => {
+    const div = container.querySelector('.blog')
+    expect(div).toHaveTextContent(`${blog.title} ${blog.author}`)
+  })
+
+  test('show details when show button is clicked', () => {
+    const button = screen.getByText('view')
+    userEvent.click(button)
+
+    const urlDiv = container.querySelector('.blog-url')
+    expect(urlDiv).toHaveTextContent(blog.url)
+
+    const likesDiv = container.querySelector('.blog-likes')
+    expect(likesDiv).toHaveTextContent(`likes: ${blog.likes}`)
+  })
 })

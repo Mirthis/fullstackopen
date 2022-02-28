@@ -25,9 +25,9 @@ const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
   }
 
   const blogDetails = () => (
-    <>
-      <div>{blog.url}</div>
-      <div>
+    <div className="blog-details">
+      <div className="blog-url">{blog.url}</div>
+      <div className="blog-likes">
         likes: {blog.likes}
         <button onClick={handleLike}>like</button>
       </div>
@@ -35,7 +35,7 @@ const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
       <div>
         {canBeDeleted && <button onClick={handleDelete}>Remove</button>}
       </div>
-    </>
+    </div>
   )
 
   const toggleVisibility = () => {
