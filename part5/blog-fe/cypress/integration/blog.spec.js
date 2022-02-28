@@ -31,4 +31,19 @@ describe('Blog app', function () {
       cy.contains('Wrong username or password')
     })
   })
+
+  describe('When logged in', function () {
+    beforeEach(function () {
+      cy.login({ username: 'John', password: 'password' })
+    })
+
+    it('A blog can be created', function () {
+      cy.contains('create new blog').click()
+      cy.get('input[name="title"]').type('Blog created durign e2e testing')
+      cy.get('input[name="author"]').type('robot')
+      cy.get('input[name="url"]').type('http://e2e.test.me')
+      cy.get('#create-blog-submit').click()
+      cy.contains('Blog created durign e2e testing robot')
+    })
+  })
 })

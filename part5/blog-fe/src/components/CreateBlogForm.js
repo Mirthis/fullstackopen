@@ -54,7 +54,9 @@ const CreateBlogForm = ({ createBlogHandler }) => {
             placeholder="blog url"
           />
         </div>
-        <button type="submit">create</button>
+        <button id="create-blog-submit" type="submit">
+          create
+        </button>
       </form>
     </div>
   )
