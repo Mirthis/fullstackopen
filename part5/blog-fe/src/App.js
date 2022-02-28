@@ -97,7 +97,7 @@ const App = () => {
       {notification && (
         <Notification message={notification.message} type={notification.type} />
       )}
-      {user == null ? (
+      {user === null ? (
         <LoginForm loginHandler={loginUser} />
       ) : (
         <div>
