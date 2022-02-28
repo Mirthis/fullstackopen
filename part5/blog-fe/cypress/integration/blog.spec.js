@@ -8,6 +8,13 @@ describe('Blog app', function () {
     }
     cy.request('POST', 'http://localhost:3003/api/users/', user)
 
+    const user2 = {
+      name: 'Jon Doe',
+      username: 'JD',
+      password: 'password',
+    }
+    cy.request('POST', 'http://localhost:3003/api/users/', user2)
+
     cy.visit('http://localhost:3000')
   })
 
@@ -55,10 +62,25 @@ describe('Blog app', function () {
         })
       })
 
-      it.only('A blog can be liked', function () {
+      it('A blog can be liked', function () {
         cy.contains('view').click()
         cy.contains('like').click()
         cy.contains('likes: 1')
+      })
+
+      it('can be deleted by the owner', function () {
+        cy.contains('view').click()
+        cy.contains('Test blog robot')
+        cy.contains('Remove').click()
+        cy.on('window:confirm', () => true)
+        cy.contains('Test blog robot').should('not.exist')
+      })
+
+      it.only('cannot be deleted by non-owner', function () {
+        cy.login({ username: 'JD', password: 'password' })
+        cy.contains('view').click()
+        cy.contains('Test blog robot')
+        cy.contains('Remove').should('not.exist')
       })
     })
   })
