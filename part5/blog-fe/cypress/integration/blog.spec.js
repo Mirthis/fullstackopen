@@ -45,5 +45,21 @@ describe('Blog app', function () {
       cy.get('#create-blog-submit').click()
       cy.contains('Blog created durign e2e testing robot')
     })
+
+    describe('When blog exist', function () {
+      beforeEach(function () {
+        cy.createBlog({
+          title: 'Test blog',
+          author: 'robot',
+          url: 'http://test.me',
+        })
+      })
+
+      it.only('A blog can be liked', function () {
+        cy.contains('view').click()
+        cy.contains('like').click()
+        cy.contains('likes: 1')
+      })
+    })
   })
 })
