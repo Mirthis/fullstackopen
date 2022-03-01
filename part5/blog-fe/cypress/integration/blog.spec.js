@@ -53,7 +53,7 @@ describe('Blog app', function () {
       cy.contains('Blog created durign e2e testing robot')
     })
 
-    describe('When blog exist', function () {
+    describe('When a blog exist', function () {
       beforeEach(function () {
         cy.createBlog({
           title: 'Test blog',
@@ -76,11 +76,53 @@ describe('Blog app', function () {
         cy.contains('Test blog robot').should('not.exist')
       })
 
-      it.only('cannot be deleted by non-owner', function () {
+      it('cannot be deleted by non-owner', function () {
         cy.login({ username: 'JD', password: 'password' })
         cy.contains('view').click()
         cy.contains('Test blog robot')
         cy.contains('Remove').should('not.exist')
+      })
+    })
+
+    describe('When multiple blog exists', function () {
+      beforeEach(function () {
+        cy.createBlog({
+          title: 'Test blog',
+          author: 'robot',
+          url: 'http://test.me',
+          likes: 1,
+        })
+        cy.createBlog({
+          title: 'Another Test blog',
+          author: 'another robot',
+          url: 'http://test.me',
+          likes: 5,
+        })
+
+        cy.createBlog({
+          title: 'The best Test blog',
+          author: 'the best robot',
+          url: 'http://test.me',
+          likes: 10,
+        })
+      })
+      it('blogs should be displayed based on numer of likes', function () {
+        // cy.get('.blog').then(blogs => {
+        //   console.log(blogs)
+        // })
+        cy.get('.btn-blog-expand').click({ multiple: true })
+        cy.get('.blog-likes-number').then(likes => {
+          const likesNum = likes
+            .map((i, el) => {
+              return +el.innerText
+            })
+            .get()
+          const likesNumSorted = likesNum.slice().sort((a, b) => b - a)
+          const compareResult = likesNum.every(
+            (value, index) => value === likesNumSorted[index]
+          )
+          expect(compareResult).to.be.true
+        })
       })
     })
   })

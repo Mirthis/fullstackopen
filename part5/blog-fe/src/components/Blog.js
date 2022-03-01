@@ -28,7 +28,7 @@ const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
     <div className="blog-details">
       <div className="blog-url">{blog.url}</div>
       <div className="blog-likes">
-        likes: {blog.likes}
+        likes: <span className="blog-likes-number">{blog.likes}</span>
         <button onClick={handleLike}>like</button>
       </div>
       <div>owner: {blog.user.username}</div>
@@ -46,7 +46,9 @@ const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
     <div style={blogStyle} className="blog">
       <div>
         {blog.title} {blog.author}
-        <button onClick={toggleVisibility}>{visible ? 'hide' : 'view'}</button>
+        <button className="btn-blog-expand" onClick={toggleVisibility}>
+          {visible ? 'hide' : 'view'}
+        </button>
       </div>
       {visible && blogDetails()}
     </div>
