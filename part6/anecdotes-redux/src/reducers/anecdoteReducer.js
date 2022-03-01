@@ -29,7 +29,13 @@ const reducer = (state = initialState, action) => {
       const anectdote = state.find(a => a.id === anectdoteId)
       const newAnecdote = { ...anectdote, votes: anectdote.votes + 1 }
       const newState = state.map(a => (a.id === anectdoteId ? newAnecdote : a))
-      console.log(newState)
+      //console.log(newState)
+      return newState
+    }
+    case 'CREATE_ANECTDOTE': {
+      const newAnectdote = action.data
+      const newState = state.concat(newAnectdote)
+      //console.log(newState)
       return newState
     }
     default:
@@ -42,6 +48,17 @@ export const addVote = id => {
     type: 'ADD_VOTE',
     data: {
       id: id,
+    },
+  }
+}
+
+export const createAnectdote = text => {
+  return {
+    type: 'CREATE_ANECTDOTE',
+    data: {
+      content: text,
+      id: getId(),
+      votes: 0,
     },
   }
 }
