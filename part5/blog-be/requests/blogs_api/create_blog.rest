@@ -1,0 +1,49 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFDIiwiaWQiOiI2MjFhNTIzNzkxMjhmYmQ1ZTBmZWQ0NTAiLCJpYXQiOjE2NDU4OTc2NTh9.5X3loWcDV3iO-4QfejU0jrH4uebPtbJz943jBugOpZs
+
+{
+  "title": "Test blog",
+  "author": "AC",
+  "url": "http://localhost",
+  "likes": 0,
+  "userId": "621a52379128fbd5e0fed450"
+}
+
+###
+
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFDIiwiaWQiOiI2MjFhNTIzNzkxMjhmYmQ1ZTBmZWQ0NTAiLCJpYXQiOjE2NDU4OTc2NTh9.5X3loWcDV3iO-4QfejU0jrH4uebPtbJz943jBugOpZs
+
+{
+  "title": "Another blog",
+  "author": "AC",
+  "url": "http://blog.test",
+  "likes": 10,
+  "userId": "621a52379128fbd5e0fed450"
+}
+
+###
+
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyMWE1MjM0OTEyOGZiZDVlMGZlZDQ0ZCIsImlhdCI6MTY0NTg5NzcyMn0.bZmIR8ZD-CLNYEaH-mGHp9iz9yF3G9_R__Opdl-AyZk
+
+{
+  "title": "Root blog",
+  "author": "root",
+  "url": "http://blog.test",
+  "likes": 10,
+  "userId": "621a52349128fbd5e0fed44d"
+}
+
+### invalid, missing title
+
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "author": "AC",
+  "url": "http://blog.test"
+}
