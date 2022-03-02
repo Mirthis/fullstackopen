@@ -10,7 +10,7 @@ const AnectdoteForm = props => {
     const text = event.target.text.value
     event.target.text.value = ''
     dispatch(createAnectdote(text))
-    showNotification(dispatch, `${text} created!`)
+    showNotification(dispatch, `'${text}' created!`)
   }
 
   return (

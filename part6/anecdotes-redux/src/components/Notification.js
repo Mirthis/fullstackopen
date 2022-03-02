@@ -1,5 +1,8 @@
 import { useSelector } from 'react-redux'
-import { setNotification } from '../reducers/notificationReducer'
+import {
+  removeNotification,
+  setNotification,
+} from '../reducers/notificationReducer'
 
 const Notification = () => {
   const notification = useSelector(state => state.notification)
@@ -13,7 +16,7 @@ const Notification = () => {
 
 export const showNotification = (dispatch, text) => {
   dispatch(setNotification(text))
-  setTimeout(() => dispatch(setNotification(null)), 5000)
+  setTimeout(() => dispatch(removeNotification), 5000)
 }
 
 export default Notification
