@@ -4,9 +4,12 @@ import { showNotification } from './Notification'
 
 const AnectdoteList = props => {
   const dispatch = useDispatch()
-  const anectdotes = useSelector(state => state.anectdotes)
-    .slice()
-    .sort((a, b) => b.votes - a.votes)
+  const allAnectdotes = useSelector(state => state.anectdotes)
+  const filter = useSelector(state => state.filter)
+  const filterAnectdotes = filter
+    ? allAnectdotes.filter(an => an.content.includes(filter))
+    : allAnectdotes
+  const anectdotes = filterAnectdotes.slice().sort((a, b) => b.votes - a.votes)
 
   const vote = id => {
     dispatch(addVote(id))
