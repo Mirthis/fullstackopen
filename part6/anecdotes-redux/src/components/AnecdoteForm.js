@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { createAnectdote } from '../reducers/anecdoteReducer'
+import { showNotification } from './Notification'
 
 const AnectdoteForm = props => {
   const dispatch = useDispatch()
@@ -9,6 +10,7 @@ const AnectdoteForm = props => {
     const text = event.target.text.value
     event.target.text.value = ''
     dispatch(createAnectdote(text))
+    showNotification(dispatch, `${text} created!`)
   }
 
   return (
