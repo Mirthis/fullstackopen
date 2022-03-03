@@ -11,7 +11,7 @@ const Notification = props => {
 }
 
 const mapStateToProp = state => {
-  return { notification: state.notification }
+  return { notification: state.notification.text }
 }
 
 const connectedNotification = connect(mapStateToProp)(Notification)

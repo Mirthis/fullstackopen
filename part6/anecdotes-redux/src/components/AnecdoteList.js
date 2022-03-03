@@ -14,7 +14,7 @@ const AnectdoteList = props => {
   const vote = id => {
     dispatch(addVote(id))
     const anectdote = anectdotes.find(a => a.id === id)
-    dispatch(setNotification(`You voted '${anectdote.content}'`, 3))
+    dispatch(setNotification(`You voted '${anectdote.content}'`, 5))
   }
 
   return (

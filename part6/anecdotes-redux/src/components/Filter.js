@@ -18,7 +18,9 @@ const Filter = props => {
   )
 }
 
-const mapStateToProps = state => state.filter
+const mapStateToProps = state => {
+  return { filter: state.filter }
+}
 
 const mapDispatchToProps = {
   setFilter,
