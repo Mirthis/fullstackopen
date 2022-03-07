@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { initializeBlogs } from './reducers/blogReducer'
 import BlogList from './components/BlogList'
 import { initializeLoggedUser } from './reducers/loginReducer'
-import LoginHeader from './components/LoginHeader'
 import { Routes, Route } from 'react-router-dom'
 import UsersList from './components/UsersList'
 import UserDetails from './components/User'
 import { initializeUsers } from './reducers/userReducer'
 import Blog from './components/Blog'
+import LoginForm from './components/LoginForm'
+import Navigation from './components/Navigation'
 
 const App = () => {
   const blogFormRef = useRef()
@@ -37,13 +38,16 @@ const App = () => {
   const Home = () => {
     return (
       <>
-        {loggedUser && (
+        {loggedUser ? (
           <div>
+            <h2>blogs</h2>
             <Togglable buttonLabel="create new blog" ref={blogFormRef}>
               <CreateBlogForm formRef={blogFormRef} />
             </Togglable>
             <BlogList />
           </div>
+        ) : (
+          <LoginForm />
         )}
       </>
     )
@@ -51,8 +55,8 @@ const App = () => {
 
   return (
     <div>
+      <Navigation />
       <Notification />
-      <LoginHeader />
 
       <Routes>
         <Route path="/" element={<Home />} />
