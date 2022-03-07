@@ -1,21 +1,23 @@
-import { useState } from 'react'
 import React from 'react'
-import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
-import { deleteBlog, likeBlog } from '../reducers/blogReducer'
+import { useMatch } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { likeBlog, deleteBlog } from '../reducers/blogReducer'
 import { setNotification } from '../reducers/notificationReducer'
+import { useNavigate } from 'react-router-dom'
 
-const Blog = ({ blog, canBeDeleted }) => {
-  const [visible, setVisible] = useState(false)
+const Blog = () => {
+  const match = useMatch('/blogs/:id')
+  const getBlogs = state => state.blogs
+  const blogs = useSelector(getBlogs)
+  const blog = blogs.find(blog => blog.id === match.params.id)
+  if (!blog) return <p>Blog not found</p>
+
+  const getUser = state => state.loggedUser
+  const loggedUser = useSelector(getUser)
+  const canBeDeleted = blog.user.username === loggedUser.username
+
   const dispatch = useDispatch()
-
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5,
-  }
+  const navigate = useNavigate()
 
   const handleLike = async () => {
     try {
@@ -40,6 +42,7 @@ const Blog = ({ blog, canBeDeleted }) => {
       try {
         dispatch(deleteBlog(blog))
         dispatch(setNotification(`"${blog.title}" deleted!`, 'success'))
+        navigate('/')
       } catch (err) {
         dispatch(
           setNotification(
@@ -52,40 +55,26 @@ const Blog = ({ blog, canBeDeleted }) => {
     }
   }
 
-  const blogDetails = () => (
-    <div className="blog-details">
-      <div className="blog-url">{blog.url}</div>
-      <div className="blog-likes">
-        likes: <span className="blog-likes-number">{blog.likes}</span>
-        <button onClick={handleLike}>like</button>
-      </div>
-      <div>owner: {blog.user.username}</div>
-      <div>
-        {canBeDeleted && <button onClick={handleDelete}>Remove</button>}
-      </div>
-    </div>
-  )
-
-  const toggleVisibility = () => {
-    setVisible(!visible)
-  }
-
   return (
-    <div style={blogStyle} className="blog">
-      <div>
-        {blog.title} {blog.author}
-        <button className="btn-blog-expand" onClick={toggleVisibility}>
-          {visible ? 'hide' : 'view'}
-        </button>
+    <div>
+      <h2>
+        {blog.title} by {blog.author}
+      </h2>
+      <div className="blog-details">
+        <div className="blog-url">
+          <a href={blog.url}>{blog.url}</a>
+        </div>
+        <div className="blog-likes">
+          likes: <span className="blog-likes-number">{blog.likes}</span>
+          <button onClick={handleLike}>like</button>
+        </div>
+        <div>owner: {blog.user.username}</div>
+        <div>
+          {canBeDeleted && <button onClick={handleDelete}>Remove</button>}
+        </div>
       </div>
-      {visible && blogDetails()}
     </div>
   )
-}
-
-Blog.propTypes = {
-  blog: PropTypes.object.isRequired,
-  canBeDeleted: PropTypes.bool.isRequired,
 }
 
 export default Blog

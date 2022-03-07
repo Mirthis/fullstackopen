@@ -1,6 +1,6 @@
 import React from 'react'
-import Blog from './Blog'
 import { useSelector } from 'react-redux'
+import BlogPreview from './BlogPreview'
 
 const BlogList = () => {
   const getBlogs = state => state.blogs
@@ -12,7 +12,7 @@ const BlogList = () => {
   return (
     <div>
       {sortedBlogs.map(blog => (
-        <Blog
+        <BlogPreview
           key={blog.id}
           blog={blog}
           // canBeDeleted={blog.user.username === user.username}

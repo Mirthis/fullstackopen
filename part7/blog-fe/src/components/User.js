@@ -2,7 +2,7 @@ import React from 'react'
 import { useMatch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const UserPage = () => {
+const User = () => {
   const match = useMatch('/users/:id')
   const getUsers = state => state.users
 
@@ -28,4 +28,4 @@ const UserPage = () => {
   )
 }
 
-export default UserPage
+export default User

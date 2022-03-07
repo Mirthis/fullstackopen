@@ -10,8 +10,9 @@ import { initializeLoggedUser } from './reducers/loginReducer'
 import LoginHeader from './components/LoginHeader'
 import { Routes, Route } from 'react-router-dom'
 import UsersList from './components/UsersList'
-import UserPage from './components/UserPage'
+import UserDetails from './components/User'
 import { initializeUsers } from './reducers/userReducer'
+import Blog from './components/Blog'
 
 const App = () => {
   const blogFormRef = useRef()
@@ -54,9 +55,10 @@ const App = () => {
       <LoginHeader />
 
       <Routes>
-        <Route path="/users/:id" element={<UserPage />} />
-        <Route path="/users" element={<UsersList />} />
         <Route path="/" element={<Home />} />
+        <Route path="/users" element={<UsersList />} />
+        <Route path="/users/:id" element={<UserDetails />} />
+        <Route path="/blogs/:id" element={<Blog />} />
       </Routes>
     </div>
   )
