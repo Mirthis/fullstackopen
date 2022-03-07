@@ -3,7 +3,7 @@ import loginService from '../services/login'
 import blogService from '../services/blogs'
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'userLogin',
   initialState: null,
   reducers: {
     setUser(state, action) {
@@ -17,7 +17,7 @@ const userSlice = createSlice({
   },
 })
 
-export const initializeUser = () => {
+export const initializeLoggedUser = () => {
   return async dispatch => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     if (loggedUserJSON) {

@@ -1,14 +1,15 @@
 import { useEffect, useRef } from 'react'
 import Notification from './components/Notification'
 import './index.css'
-import LoginForm from './components/LoginForm'
 import CreateBlogForm from './components/CreateBlogForm'
 import Togglable from './components/Togglable'
 import { useDispatch, useSelector } from 'react-redux'
 import { initializeBlogs } from './reducers/blogReducer'
 import BlogList from './components/BlogList'
-import { initializeUser, logoutUser } from './reducers/loginReducer'
-import { setNotification } from './reducers/notificationReducer'
+import { initializeLoggedUser } from './reducers/loginReducer'
+import LoginHeader from './components/LoginHeader'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import UsersList from './components/UsersList'
 
 const App = () => {
   const blogFormRef = useRef()
@@ -20,35 +21,39 @@ const App = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(initializeUser())
+    dispatch(initializeLoggedUser())
   }, [dispatch])
 
-  const getUser = state => state.user
+  const getUser = state => state.loggedUser
 
   const user = useSelector(getUser)
 
-  const handleLogout = () => {
-    dispatch(logoutUser())
-    setNotification('Logout succesfull', 'success')
+  const Home = () => {
+    return (
+      <>
+        {user && (
+          <div>
+            <Togglable buttonLabel="create new blog" ref={blogFormRef}>
+              <CreateBlogForm formRef={blogFormRef} />
+            </Togglable>
+            <BlogList />
+          </div>
+        )}
+      </>
+    )
   }
 
   return (
     <div>
       <Notification />
-      {user === null ? (
-        <LoginForm />
-      ) : (
-        <div>
-          <h2>blogs</h2>
-          <p>
-            {user.name} logged in<button onClick={handleLogout}>Logout</button>
-          </p>
-          <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-            <CreateBlogForm formRef={blogFormRef} />
-          </Togglable>
-          <BlogList />
-        </div>
-      )}
+      <LoginHeader />
+
+      <Router>
+        <Routes>
+          <Route path="/users" element={<UsersList />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
