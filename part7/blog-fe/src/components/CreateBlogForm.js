@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import blogService from '../services/blogs'
 import { setNotification } from '../reducers/notificationReducer'
 
-const CreateBlogForm = () => {
+const CreateBlogForm = ({ formRef }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
@@ -38,6 +38,7 @@ const CreateBlogForm = () => {
           'success'
         )
       )
+      formRef.current.toggleVisibility()
       setTitle('')
       setAuthor('')
       setUrl('')
