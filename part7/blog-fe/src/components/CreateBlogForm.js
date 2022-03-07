@@ -1,10 +1,26 @@
-import { useState } from 'react'
-import PropTypes from 'prop-types'
+import { useState, useEffect } from 'react'
+import { createBlog } from '../reducers/blogReducer'
+import { useDispatch } from 'react-redux'
+import blogService from '../services/blogs'
+import { setNotification } from '../reducers/notificationReducer'
 
-const CreateBlogForm = ({ createBlogHandler }) => {
+const CreateBlogForm = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+
+  const dispatch = useDispatch()
+
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token)
+    }
+  }, [])
 
   const createBlogSubmit = async e => {
     e.preventDefault()
@@ -12,12 +28,24 @@ const CreateBlogForm = ({ createBlogHandler }) => {
       title: title,
       author: author,
       url: url,
+      user: user,
     }
-    const result = await createBlogHandler(newBlog)
-    if (result) {
+    try {
+      dispatch(createBlog(newBlog))
+      dispatch(
+        setNotification(
+          `A new blog "${newBlog.title}" by ${newBlog.author} added!`,
+          'success'
+        )
+      )
       setTitle('')
       setAuthor('')
       setUrl('')
+    } catch (err) {
+      dispatch(
+        setNotification('There was an error creating the blog!', 'error')
+      )
+      console.log(err)
     }
   }
 
@@ -60,10 +88,6 @@ const CreateBlogForm = ({ createBlogHandler }) => {
       </form>
     </div>
   )
-}
-
-CreateBlogForm.propTypes = {
-  createBlogHandler: PropTypes.func.isRequired,
 }
 
 export default CreateBlogForm

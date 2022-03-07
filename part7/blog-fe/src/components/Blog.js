@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { deleteBlog, likeBlog } from '../reducers/blogReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
-const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
+const Blog = ({ blog, canBeDeleted }) => {
   const [visible, setVisible] = useState(false)
+  const dispatch = useDispatch()
 
   const blogStyle = {
     paddingTop: 10,
@@ -13,14 +17,38 @@ const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
     marginBottom: 5,
   }
 
-  const handleLike = () => {
-    likeHandler({ ...blog, likes: blog.likes + 1 })
+  const handleLike = async () => {
+    try {
+      await dispatch(likeBlog(blog))
+      dispatch(
+        setNotification(`Like for "${blog.title}" submitted!`, 'success')
+      )
+    } catch (err) {
+      dispatch(
+        setNotification(
+          `Something went wrong when liking "${blog.title}"!`,
+          'error'
+        )
+      )
+      console.log(err)
+    }
   }
 
   const handleDelete = () => {
     const confirmed = window.confirm(`Delete ${blog.title} by ${blog.author}?`)
     if (confirmed) {
-      deleteHandler(blog)
+      try {
+        dispatch(deleteBlog(blog))
+        dispatch(setNotification(`"${blog.title}" deleted!`, 'success'))
+      } catch (err) {
+        dispatch(
+          setNotification(
+            `Something went wrong when deleting "${blog.title}"!`,
+            'error'
+          )
+        )
+        console.log(err)
+      }
     }
   }
 
@@ -57,9 +85,7 @@ const Blog = ({ blog, likeHandler, canBeDeleted, deleteHandler }) => {
 
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
-  likeHandler: PropTypes.func.isRequired,
   canBeDeleted: PropTypes.bool.isRequired,
-  deleteHandler: PropTypes.func.isRequired,
 }
 
 export default Blog

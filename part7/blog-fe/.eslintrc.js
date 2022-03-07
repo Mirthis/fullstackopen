@@ -6,7 +6,11 @@ module.exports = {
     'jest/globals': true,
     'cypress/globals': true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-redux/recommended',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -14,7 +18,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'jest', 'cypress'],
+  plugins: ['react', 'jest', 'cypress', 'react-redux'],
   rules: {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
