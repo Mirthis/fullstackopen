@@ -9,17 +9,18 @@ import CreateCommentForm from './CreateCommentForm'
 
 const Blog = () => {
   const match = useMatch('/blogs/:id')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const getBlogs = state => state.blogs
   const blogs = useSelector(getBlogs)
-  const blog = blogs.find(blog => blog.id === match.params.id)
-  if (!blog) return <p>Blog not found</p>
 
   const getUser = state => state.loggedUser
   const loggedUser = useSelector(getUser)
-  const canBeDeleted = blog.user.username === loggedUser.username
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const blog = blogs.find(blog => blog.id === match.params.id)
+  if (!blog) return <p>Blog not found</p>
+  const canBeDeleted = blog.user.username === loggedUser.username
 
   const handleLike = async () => {
     try {
