@@ -20,6 +20,12 @@ const create = async newObject => {
   return response.data
 }
 
+const createComment = async (blogId, newComment) => {
+  const url = `${baseUrl}/${blogId}/comments`
+  const response = await axios.post(url, newComment)
+  return response.data
+}
+
 const update = async newObject => {
   const config = {
     headers: { Authorization: token },
@@ -39,6 +45,6 @@ const remove = async newObject => {
   return response.data
 }
 
-const blogService = { getAll, create, setToken, update, remove }
+const blogService = { getAll, create, setToken, update, remove, createComment }
 
 export default blogService

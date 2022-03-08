@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { likeBlog, deleteBlog } from '../reducers/blogReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import { useNavigate } from 'react-router-dom'
+import CommentsList from './CommentsList'
+import CreateCommentForm from './CreateCommentForm'
 
 const Blog = () => {
   const match = useMatch('/blogs/:id')
@@ -55,23 +57,6 @@ const Blog = () => {
     }
   }
 
-  const Comments = ({ comments }) => {
-    return (
-      <div>
-        <h3>Comments</h3>
-        {!comments.length ? (
-          <p>No comments yet!</p>
-        ) : (
-          <ul>
-            {comments.map(c => (
-              <li key={c.id}>{c.text}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-    )
-  }
-
   return (
     <div>
       <h2>
@@ -90,7 +75,9 @@ const Blog = () => {
           {canBeDeleted && <button onClick={handleDelete}>Remove</button>}
         </div>
       </div>
-      <Comments comments={blog.comments} />
+      <h3>Comments</h3>
+      <CreateCommentForm blog={blog} />
+      <CommentsList comments={blog.comments} />
     </div>
   )
 }
