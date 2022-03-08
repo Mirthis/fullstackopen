@@ -55,6 +55,23 @@ const Blog = () => {
     }
   }
 
+  const Comments = ({ comments }) => {
+    return (
+      <div>
+        <h3>Comments</h3>
+        {!comments.length ? (
+          <p>No comments yet!</p>
+        ) : (
+          <ul>
+            {comments.map(c => (
+              <li key={c.id}>{c.text}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div>
       <h2>
@@ -68,11 +85,12 @@ const Blog = () => {
           likes: <span className="blog-likes-number">{blog.likes}</span>
           <button onClick={handleLike}>like</button>
         </div>
-        <div>owner: {blog.user.username}</div>
+        <div>added by {blog.user.username}</div>
         <div>
           {canBeDeleted && <button onClick={handleDelete}>Remove</button>}
         </div>
       </div>
+      <Comments comments={blog.comments} />
     </div>
   )
 }
