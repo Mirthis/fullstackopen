@@ -1,24 +1,27 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import BlogPreview from './BlogPreview'
+import { List } from '@mui/material'
 
-const BlogList = () => {
-  const getBlogs = state => state.blogs
-
-  const blogs = useSelector(getBlogs)
+const BlogList = ({ blogs }) => {
   const sortedBlogs = blogs.slice().sort((a, b) => b.likes - a.likes)
   //const user = { username: 'dummy' }
 
   return (
     <div>
-      {sortedBlogs.map(blog => (
-        <BlogPreview
-          key={blog.id}
-          blog={blog}
-          // canBeDeleted={blog.user.username === user.username}
-          canBeDeleted={true}
-        />
-      ))}
+      {sortedBlogs.length ? (
+        <List>
+          {sortedBlogs.map(blog => (
+            <BlogPreview
+              key={blog.id}
+              blog={blog}
+              // canBeDeleted={blog.user.username === user.username}
+              canBeDeleted={true}
+            />
+          ))}
+        </List>
+      ) : (
+        <p>No blogs to display</p>
+      )}
     </div>
   )
 }

@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { commentBlog } from '../reducers/blogReducer'
 import { useDispatch } from 'react-redux'
 import { setNotification } from '../reducers/notificationReducer'
+import { TextField, Box } from '@mui/material'
+import CreateIcon from '@mui/icons-material/Create'
+import { Button } from '@mui/material'
 
 const CreateCommentForm = ({ blog }) => {
   const [text, setText] = useState('')
@@ -27,18 +30,32 @@ const CreateCommentForm = ({ blog }) => {
 
   return (
     <div>
-      <form onSubmit={createCommentSubmit}>
-        <input
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '50ch' },
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={createCommentSubmit}
+      >
+        <TextField
           type="text"
           value={text}
-          name="text"
+          label="Comment"
           onChange={({ target }) => setText(target.value)}
-          placeholder="blog title"
+          placeholder="Comment Text"
         />
-        <button id="create-blog-submit" type="submit">
-          add comment
-        </button>
-      </form>
+        <Button
+          id="create-blog-submit"
+          variant="contained"
+          type="submit"
+          endIcon={<CreateIcon />}
+          sx={{ mt: 2 }}
+        >
+          Add comment
+        </Button>
+      </Box>
     </div>
   )
 }

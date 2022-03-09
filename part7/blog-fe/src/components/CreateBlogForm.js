@@ -3,11 +3,24 @@ import { createBlog } from '../reducers/blogReducer'
 import { useDispatch } from 'react-redux'
 import blogService from '../services/blogs'
 import { setNotification } from '../reducers/notificationReducer'
+import Button from '@mui/material/Button'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { Stack, TextField, Box } from '@mui/material'
+import CreateIcon from '@mui/icons-material/Create'
+import AddIcon from '@mui/icons-material/Add'
 
-const CreateBlogForm = ({ formRef }) => {
+const CreateBlogForm = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+  const [visible, setVisible] = useState(false)
+
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const toggleVisibility = () => {
+    setVisible(!visible)
+  }
 
   const dispatch = useDispatch()
 
@@ -38,7 +51,7 @@ const CreateBlogForm = ({ formRef }) => {
           'success'
         )
       )
-      formRef.current.toggleVisibility()
+      toggleVisibility()
       setTitle('')
       setAuthor('')
       setUrl('')
@@ -52,41 +65,75 @@ const CreateBlogForm = ({ formRef }) => {
 
   return (
     <div>
-      <form onSubmit={createBlogSubmit}>
-        <div>
-          Title
-          <input
-            type="text"
-            value={title}
-            name="title"
-            onChange={({ target }) => setTitle(target.value)}
-            placeholder="blog title"
-          />
-        </div>
-        <div>
-          Author
-          <input
-            type="text"
-            value={author}
-            name="author"
-            onChange={({ target }) => setAuthor(target.value)}
-            placeholder="blog author"
-          />
-        </div>
-        <div>
-          Url
-          <input
-            type="text"
-            value={url}
-            name="url"
-            onChange={({ target }) => setUrl(target.value)}
-            placeholder="blog url"
-          />
-        </div>
-        <button id="create-blog-submit" type="submit">
-          create
-        </button>
-      </form>
+      <div style={hideWhenVisible}>
+        <Button
+          startIcon={<AddIcon />}
+          variant="outlined"
+          onClick={toggleVisibility}
+          sx={{ mt: 2 }}
+        >
+          Create Blog
+        </Button>
+      </div>
+      <div style={showWhenVisible}>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '50ch' },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={createBlogSubmit}
+        >
+          <div>
+            <TextField
+              type="text"
+              label="Title"
+              value={title}
+              name="title"
+              onChange={({ target }) => setTitle(target.value)}
+              placeholder="blog title"
+            />
+          </div>
+          <div>
+            <TextField
+              type="text"
+              label="Author"
+              value={author}
+              name="author"
+              onChange={({ target }) => setAuthor(target.value)}
+              placeholder="blog author"
+            />
+          </div>
+          <div>
+            <TextField
+              type="text"
+              value={url}
+              label="Url"
+              name="url"
+              onChange={({ target }) => setUrl(target.value)}
+              placeholder="blog url"
+            />
+          </div>
+          <Stack direction="row" spacing={5} sx={{ px: 10 }}>
+            <Button
+              id="create-blog-submit"
+              variant="contained"
+              type="submit"
+              endIcon={<CreateIcon />}
+            >
+              Create
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={toggleVisibility}
+              startIcon={<DeleteIcon />}
+            >
+              Cancel
+            </Button>
+          </Stack>
+        </Box>
+      </div>
     </div>
   )
 }

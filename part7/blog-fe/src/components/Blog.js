@@ -6,6 +6,7 @@ import { setNotification } from '../reducers/notificationReducer'
 import { useNavigate } from 'react-router-dom'
 import CommentsList from './CommentsList'
 import CreateCommentForm from './CreateCommentForm'
+import Typography from '@mui/material/Typography'
 
 const Blog = () => {
   const match = useMatch('/blogs/:id')
@@ -60,9 +61,12 @@ const Blog = () => {
 
   return (
     <div>
-      <h2>
-        {blog.title} by {blog.author}
-      </h2>
+      <Typography variant="h3" gutterBottom component="div" sx={{ mb: 0 }}>
+        {blog.title}
+      </Typography>
+      <Typography variant="h6" gutterBottom component="div">
+        by <em>{blog.author}</em>
+      </Typography>
       <div className="blog-details">
         <div className="blog-url">
           <a href={blog.url}>{blog.url}</a>

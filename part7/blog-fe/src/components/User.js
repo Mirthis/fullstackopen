@@ -1,6 +1,8 @@
 import React from 'react'
 import { useMatch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Typography from '@mui/material/Typography'
+import BlogList from './BlogList'
 
 const User = () => {
   const match = useMatch('/users/:id')
@@ -13,17 +15,13 @@ const User = () => {
 
   return (
     <div>
-      <h2>{selectedUser.name}</h2>
-      <h3>Added Blogs</h3>
-      {selectedUser.blogs.length ? (
-        <ul>
-          {selectedUser.blogs.map(blog => (
-            <li key={blog.id}>{blog.title}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No blogs added by this user</p>
-      )}
+      <Typography variant="h3" gutterBottom component="div" sx={{ mb: 0 }}>
+        {selectedUser.name}
+      </Typography>
+      <Typography variant="h5" gutterBottom component="div" sx={{ mb: 0 }}>
+        Added Blogs
+      </Typography>
+      <BlogList blogs={selectedUser.blogs} />
     </div>
   )
 }

@@ -2,6 +2,11 @@ import { useState } from 'react'
 import { setNotification } from '../reducers/notificationReducer'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../reducers/loginReducer'
+import Button from '@mui/material/Button'
+import LoginIcon from '@mui/icons-material/Login'
+import Typography from '@mui/material/Typography'
+import { Box } from '@mui/system'
+import { TextField } from '@mui/material'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
@@ -25,30 +30,45 @@ const LoginForm = () => {
 
   return (
     <div>
-      <h2>Log in to application</h2>
-      <form onSubmit={handleLogin} id="login-form">
+      <Typography variant="h4" gutterBottom component="div">
+        Log in to application
+      </Typography>
+      <Box
+        id="login-form"
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '50ch' },
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleLogin}
+      >
         <div>
-          username
-          <input
+          <TextField
             type="text"
             value={username}
-            name="Username"
+            label="Username"
             onChange={({ target }) => setUsername(target.value)}
           />
         </div>
         <div>
-          Password
-          <input
+          <TextField
             type="password"
             value={password}
-            name="Password"
+            label="Password"
             onChange={({ target }) => setPassword(target.value)}
           />
         </div>
-        <button id="login-submit" type="submit">
+        <Button
+          id="login-submit"
+          variant="contained"
+          type="submit"
+          endIcon={<LoginIcon />}
+          sx={{ ml: 5 }}
+        >
           Login
-        </button>
-      </form>
+        </Button>
+      </Box>
     </div>
   )
 }
