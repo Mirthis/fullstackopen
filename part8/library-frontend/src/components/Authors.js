@@ -35,7 +35,7 @@ const Authors = props => {
       </div>
       <div>
         <h3>Set birth year</h3>
-        <BornForm setError={props.setError} />
+        <BornForm authors={authors} setError={props.setError} />
       </div>
     </div>
   )
