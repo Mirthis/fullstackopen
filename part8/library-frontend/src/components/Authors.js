@@ -1,5 +1,6 @@
 import { ALL_AUTHORS } from '../queries'
 import { useQuery } from '@apollo/client'
+import BornForm from './BornForm'
 const Authors = props => {
   if (!props.show) {
     return null
@@ -13,23 +14,29 @@ const Authors = props => {
 
   return (
     <div>
-      <h2>authors</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>born</th>
-            <th>books</th>
-          </tr>
-          {authors.map(a => (
-            <tr key={a.name}>
-              <td>{a.name}</td>
-              <td>{a.born}</td>
-              <td>{a.bookCount}</td>
+      <div>
+        <h2>authors</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th>born</th>
+              <th>books</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            {authors.map(a => (
+              <tr key={a.name}>
+                <td>{a.name}</td>
+                <td>{a.born}</td>
+                <td>{a.bookCount}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Set birth year</h3>
+        <BornForm setError={props.setError} />
+      </div>
     </div>
   )
 }
