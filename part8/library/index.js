@@ -15,9 +15,6 @@ mongoose
     console.log('error connection to MongoDB:', error.message)
   })
 
-let authors = []
-let books = []
-
 const typeDefs = gql`
   type Author {
     name: String!
@@ -68,18 +65,19 @@ const resolvers = {
     allAuthors: async () => Author.find({}),
   },
   Author: {
-    bookCount: root => books.filter(b => b.author === root.name).length,
+    bookCount: async root =>
+      Book.collection.countDocuments({ author: root._id }),
+  },
+  Book: {
+    author: async root => Author.findById(root.author),
   },
   Mutation: {
     addBook: async (root, args) => {
       try {
-        console.log(args)
         let author = await Author.findOne({ name: args.author })
-        console.log(author)
         if (!author) {
           const newAuthor = new Author({ name: args.author })
           author = await newAuthor.save()
-          console.log(author)
         }
         const newBook = new Book({ ...args, author: author._id })
         await newBook.save()
@@ -90,12 +88,18 @@ const resolvers = {
         })
       }
     },
-    editAuthor: (rot, args) => {
-      const author = authors.find(a => a.name === args.name)
-      if (!author) return null
-      const newAuthor = { ...author, born: args.setBornTo }
-      authors = authors.map(a => (a.id === author.id ? newAuthor : a))
-      return newAuthor
+    editAuthor: async (rot, args) => {
+      try {
+        const author = await Author.findOne({ name: args.name })
+        if (!author) return null
+        author.born = args.setBornTo
+        const newAuthor = await author.save()
+        return newAuthor
+      } catch (error) {
+        throw new UserInputError(error.message, {
+          invalidArgs: args,
+        })
+      }
     },
   },
 }
