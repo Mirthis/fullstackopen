@@ -14,7 +14,6 @@ const App = () => {
   useEffect(() => {
     const tkn = localStorage.getItem('library-user-token')
     if (tkn) setToken(tkn)
-    console.log(tkn)
   }, [])
 
   const notify = message => {
