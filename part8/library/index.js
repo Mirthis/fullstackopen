@@ -53,7 +53,9 @@ const typeDefs = gql`
     authorCount: Int!
     allBooks(author: String, genre: String): [Book!]!
     allAuthors: [Author!]!
+    allGenres: [String!]!
     me: User
+    myRecoomendations: [Book!]!
   }
 
   type Mutation {
@@ -73,18 +75,27 @@ const resolvers = {
   Query: {
     bookCount: async () => Book.collection.countDocuments(),
     authorCount: async () => Author.collection.countDocuments(),
-    allBooks: async () => Book.find({}),
-    // let result = books
-    // if (args.author) {
-    //   result = result.filter(b => b.author === args.author)
-    // }
-    // if (args.genre) {
-    //   result = result.filter(b => b.genres.includes(args.genre))
-    // }
-    // return result,
+    allBooks: async (root, args) => {
+      const filter = {}
+      if (args.author) {
+        filter.author = { $in: [args.author] }
+      }
+      if (args.genre) {
+        filter.genres = { $in: [args.genre] }
+      }
+      return Book.find(filter)
+    },
     allAuthors: async () => Author.find({}),
+    allGenres: async () => {
+      const books = await Book.find({})
+      return [...new Set(Object.values(books).flatMap(book => book.genres))]
+    },
     me: (root, args, context) => {
       return context.currentUser
+    },
+    myRecoomendations: async (root, args, context) => {
+      const myGenre = context.currentUser.favoriteGenre
+      return Book.find({ genres: { $in: [myGenre] } })
     },
   },
   Author: {
