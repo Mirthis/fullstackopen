@@ -15,7 +15,11 @@ const NewBook = props => {
       props.setError(error.graphQLErrors[0].message)
     },
     update: (cache, response) => {
-      updateCache(cache, { query: ALL_BOOKS }, response.data.addBook)
+      updateCache(
+        cache,
+        { query: ALL_BOOKS, variables: { genreFilter: null } },
+        response.data.addBook
+      )
     },
   })
 

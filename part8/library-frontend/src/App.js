@@ -23,7 +23,11 @@ const App = () => {
     onSubscriptionData: ({ subscriptionData }) => {
       const addedBook = subscriptionData.data.bookAdded
       notify(`${addedBook.title} added`)
-      updateCache(client.cache, { query: ALL_BOOKS }, addedBook)
+      updateCache(
+        client.cache,
+        { query: ALL_BOOKS, variables: { genreFilter: null } },
+        addedBook
+      )
     },
   })
 
