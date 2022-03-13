@@ -35,8 +35,9 @@ const resolvers = {
     },
   },
   Author: {
-    bookCount: async root =>
-      Book.collection.countDocuments({ author: root._id }),
+    bookCount: async root => {
+      return root.books.length
+    },
   },
   Book: {
     author: async root => Author.findById(root.author),
@@ -54,7 +55,9 @@ const resolvers = {
           author = await newAuthor.save()
         }
         const newBook = new Book({ ...args, author: author._id })
-        await newBook.save()
+        const savedBook = await newBook.save()
+        author.books = author.books.concat(savedBook._id)
+        await author.save()
         pubsub.publish('BOOK_ADDED', { bookAdded: newBook })
         return newBook
       } catch (error) {
