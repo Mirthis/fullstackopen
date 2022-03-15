@@ -8,26 +8,26 @@ interface Result {
   average: number;
 }
 
-interface calcArgs {
-  target: number;
-  trainingData: Array<number>;
-}
+// interface calcArgs {
+//   target: number;
+//   trainingData: Array<number>;
+// }
 
-const parseCalcArguments = (args: Array<string>): calcArgs => {
-  if (args.length < 4) throw new Error('Not enough arguments');
-  args.slice(2).forEach(arg => {
-    if (!isNaN(Number(arg)) || Number(arg) < 0) {
-      Error('All parameters must be numbers greater or equal to 0');
-    }
-  });
+// const parseCalcArguments = (args: Array<string>): calcArgs => {
+//   if (args.length < 4) throw new Error('Not enough arguments');
+//   args.slice(2).forEach(arg => {
+//     if (!isNaN(Number(arg)) || Number(arg) < 0) {
+//       Error('All parameters must be numbers greater or equal to 0');
+//     }
+//   });
 
-  const [target, ...trainingData] = args.slice(2).map(arg => Number(arg));
+//   const [target, ...trainingData] = args.slice(2).map(arg => Number(arg));
 
-  return {
-    target,
-    trainingData,
-  };
-};
+//   return {
+//     target,
+//     trainingData,
+//   };
+// };
 
 const calculateExercises = (
   target: number,
@@ -61,13 +61,15 @@ const calculateExercises = (
   };
 };
 
-try {
-  const { target, trainingData } = parseCalcArguments(process.argv);
-  console.log(calculateExercises(target, trainingData));
-} catch (error: unknown) {
-  let errorMessage = 'Something bad happened.';
-  if (error instanceof Error) {
-    errorMessage += ' Error: ' + error.message;
-  }
-  console.log(errorMessage);
-}
+// try {
+//   const { target, trainingData } = parseCalcArguments(process.argv);
+//   console.log(calculateExercises(target, trainingData));
+// } catch (error: unknown) {
+//   let errorMessage = 'Something bad happened.';
+//   if (error instanceof Error) {
+//     errorMessage += ' Error: ' + error.message;
+//   }
+//   console.log(errorMessage);
+// }
+
+export default calculateExercises;
