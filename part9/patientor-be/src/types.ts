@@ -1,3 +1,9 @@
+export enum Gender {
+  Male = 'male',
+  Female = 'female',
+  Other = 'other',
+}
+
 export interface Diagnose {
   code: string;
   name: string;
@@ -11,12 +17,6 @@ export interface Patient {
   ssn: string;
   gender: Gender;
   occupation: string;
-}
-
-export enum Gender {
-  Male = 'male',
-  Female = 'female',
-  Other = 'other',
 }
 
 export type NonSensitivePatient = Omit<Patient, 'ssn'>;
