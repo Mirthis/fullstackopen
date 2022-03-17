@@ -59,6 +59,7 @@ export const toNewPatientEntry = ({
     ssn: parseStringField(ssn, 'ssn'),
     gender: parseGender(gender),
     occupation: parseStringField(occupation, 'occupation'),
+    entries: [],
   };
   return newPatient;
 };
