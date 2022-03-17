@@ -1,4 +1,4 @@
-import { useStateValue } from "../state";
+import { useStateValue, updatePatient, setShownPatient } from "../state";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -12,15 +12,15 @@ const PatientPage = () => {
     if (!id) return;
 
     if (patients[id]) {
-      dispatch({ type: "SET_SHOWN PATIENT", payload: patients[id] });
+      dispatch(setShownPatient(patients[id]));
     } else {
       const fetchPatient = async () => {
         try {
           const { data: patientFromApi } = await axios.get<Patient>(
             `${apiBaseUrl}/patients/${id}`
           );
-          dispatch({ type: "UPDATE PATIENT", payload: patientFromApi });
-          dispatch({ type: "SET_SHOWN PATIENT", payload: patientFromApi });
+          dispatch(updatePatient(patientFromApi));
+          dispatch(setShownPatient(patientFromApi));
         } catch (e) {
           console.error(e);
         }
