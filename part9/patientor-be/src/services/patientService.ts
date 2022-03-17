@@ -19,7 +19,7 @@ const getPatients = (): Patient[] => {
 };
 
 const getPatient = (id: string): Patient => {
-  const patient = patients.find(p => (p.id = id));
+  const patient = patients.find(p => p.id === id);
   if (!patient) {
     throw new Error('Patient cannot be found');
   }
