@@ -44,14 +44,16 @@ export const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
       validate={(values) => {
         const requiredError = "Field is required";
         const errors: { [field: string]: string } = {};
-        if (!values.description) {
-          errors.name = requiredError;
+        if (!values.description || values.description === "") {
+          errors.description = requiredError;
         }
         if (!values.date) {
-          errors.ssn = requiredError;
+          errors.date = requiredError;
+        } else if (!Date.parse(values.date)) {
+          errors.date = "Invalid date format. Format: YYYY-MM-DD";
         }
         if (!values.specialist) {
-          errors.dateOfBirth = requiredError;
+          errors.specialist = requiredError;
         }
         return errors;
       }}

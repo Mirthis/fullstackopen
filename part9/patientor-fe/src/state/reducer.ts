@@ -120,8 +120,8 @@ export const reducer = (state: State, action: Action): State => {
         patients: {
           ...state.patients,
           [patient.id]: updatedPatient,
-          shownPatient: updatedPatient,
         },
+        shownPatient: updatedPatient,
       };
     default:
       return state;
