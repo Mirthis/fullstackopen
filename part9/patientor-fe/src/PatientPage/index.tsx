@@ -11,6 +11,7 @@ import {
   OccupationalHealthcareEntry,
   HealthCheckEntry,
   HealthCheckRating,
+  EntryType,
 } from "../types";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
@@ -36,11 +37,11 @@ const PatientEntry = ({ entry }: { entry: Entry }) => {
 
 const EntryDetails = ({ entry }: { entry: Entry }) => {
   switch (entry.type) {
-    case "Hospital":
+    case EntryType.Hospital:
       return <PatientHospitalEntry entry={entry} />;
-    case "OccupationalHealthcare":
+    case EntryType.OccupationalHealthcare:
       return <PatientOccupationalEntry entry={entry} />;
-    case "HealthCheck":
+    case EntryType.HealthCheck:
       return <PatientHealthEntry entry={entry} />;
     default:
       return assertNever(entry);
@@ -88,11 +89,11 @@ const PatientHealthEntry = ({ entry }: { entry: HealthCheckEntry }) => {
 
 const renderEntryIcon = (entry: Entry) => {
   switch (entry.type) {
-    case "Hospital":
+    case EntryType.Hospital:
       return <LocalHospitalIcon />;
-    case "HealthCheck":
+    case EntryType.HealthCheck:
       return <HealthAndSafetyIcon />;
-    case "OccupationalHealthcare":
+    case EntryType.OccupationalHealthcare:
       return <WorkIcon />;
     default:
       return assertNever(entry);

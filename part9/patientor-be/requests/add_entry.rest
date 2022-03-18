@@ -1,0 +1,43 @@
+### HealthCheckEntry
+POST http://localhost:3001/api/patients/527f5d23-2ae8-48ec-bf2b-7ee1c9d51c41/entries
+Content-Type: application/json
+
+{
+  "description": "routine check",
+  "date": "2022-01-15",
+  "specialist": "Dr. Sederone",
+  "healthCheckRating": 0,
+  "type": "HealthCheck"
+}
+
+### OccupationalEntry
+POST http://localhost:3001/api/patients/527f5d23-2ae8-48ec-bf2b-7ee1c9d51c41/entries
+Content-Type: application/json
+
+{
+  "description": "routine check",
+  "date": "2022-01-15",
+  "specialist": "Dr. Sederone",
+   "employerName": "X6X",
+   "sickLeave": {
+     "startDate": "2022-01-05",
+     "endDate": "2022-01-15"
+   },
+  "type": "OccupationalHealthcare"
+}
+
+
+### Hiospital Entry
+POST http://localhost:3001/api/patients/527f5d23-2ae8-48ec-bf2b-7ee1c9d51c41/entries
+Content-Type: application/json
+
+{
+  "description": "routine check",
+  "date": "2022-03-15",
+  "specialist": "Dr. Sederone",
+  "discharge": {
+    "date": "2022-2-24",
+    "criteria": "full recovery"
+  },
+  "type": "Hospital"
+}

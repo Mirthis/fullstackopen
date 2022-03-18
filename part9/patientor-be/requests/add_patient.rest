@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/patients
+Content-Type: application/json
+
+{
+  "name": "Andrea Pigna",
+  "ssn": "11111-4444L",
+  "occupation": "IT Dev",
+  "gender": "male",
+  "dateOfBirth": "1982-12-15"
+}
