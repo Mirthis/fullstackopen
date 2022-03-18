@@ -4,85 +4,89 @@ import { Field, Formik, Form } from "formik";
 
 import {
   TextField,
+  DiagnosisSelection,
+  RatingSelectOption,
   SelectField,
-  GenderSelectOption,
 } from "../components/FormField";
-import { Gender, Patient } from "../types";
-
-/*
- * use type Patient, but omit id and entries,
- * because those are irrelevant for new patient object.
- */
-export type PatientFormValues = Omit<Patient, "id" | "entries">;
+import { EntryType, HealthCheckRating, NewEntry } from "../types";
+import { useStateValue } from "../state";
 
 interface Props {
-  onSubmit: (values: PatientFormValues) => void;
+  onSubmit: (values: NewEntry) => void;
   onCancel: () => void;
 }
 
-const genderOptions: GenderSelectOption[] = [
-  { type: "gender", value: Gender.Male, label: "Male" },
-  { type: "gender", value: Gender.Female, label: "Female" },
-  { type: "gender", value: Gender.Other, label: "Other" },
+const ratingOptions: RatingSelectOption[] = [
+  { type: "rating", value: HealthCheckRating.Healthy, label: "Healthy" },
+  { type: "rating", value: HealthCheckRating.LowRisk, label: "Low Risk" },
+  { type: "rating", value: HealthCheckRating.HighRisk, label: "High Risk" },
+  {
+    type: "rating",
+    value: HealthCheckRating.CriticalRisk,
+    label: "Critical Risk",
+  },
 ];
 
-export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
+export const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
+  const [{ diagnoses }] = useStateValue();
+
   return (
     <Formik
       initialValues={{
-        name: "",
-        ssn: "",
-        dateOfBirth: "",
-        occupation: "",
-        gender: Gender.Other,
+        type: EntryType.HealthCheck,
+        description: "",
+        date: "",
+        specialist: "",
+        diagnosisCodes: [],
+        healthCheckRating: HealthCheckRating.Healthy,
       }}
       onSubmit={onSubmit}
       validate={(values) => {
         const requiredError = "Field is required";
         const errors: { [field: string]: string } = {};
-        if (!values.name) {
+        if (!values.description) {
           errors.name = requiredError;
         }
-        if (!values.ssn) {
+        if (!values.date) {
           errors.ssn = requiredError;
         }
-        if (!values.dateOfBirth) {
+        if (!values.specialist) {
           errors.dateOfBirth = requiredError;
-        }
-        if (!values.occupation) {
-          errors.occupation = requiredError;
         }
         return errors;
       }}
     >
-      {({ isValid, dirty }) => {
+      {({ isValid, dirty, setFieldValue, setFieldTouched }) => {
         return (
           <Form className="form ui">
             <Field
-              label="Name"
-              placeholder="Name"
-              name="name"
+              label="Description"
+              placeholder="Description"
+              name="description"
               component={TextField}
             />
             <Field
-              label="Social Security Number"
-              placeholder="SSN"
-              name="ssn"
-              component={TextField}
-            />
-            <Field
-              label="Date Of Birth"
+              label="Date"
               placeholder="YYYY-MM-DD"
-              name="dateOfBirth"
+              name="date"
               component={TextField}
             />
             <Field
-              label="Occupation"
-              placeholder="Occupation"
-              name="occupation"
+              label="Specialist"
+              placeholder="Specialist"
+              name="specialist"
               component={TextField}
             />
-            <SelectField label="Gender" name="gender" options={genderOptions} />
+            <DiagnosisSelection
+              setFieldValue={setFieldValue}
+              setFieldTouched={setFieldTouched}
+              diagnoses={Object.values(diagnoses)}
+            />
+            <SelectField
+              label="Health Rating"
+              name="healthCheckRating"
+              options={ratingOptions}
+            />
             <Grid>
               <Grid item>
                 <Button
@@ -115,4 +119,4 @@ export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
   );
 };
 
-export default AddPatientForm;
+export default AddEntryForm;
