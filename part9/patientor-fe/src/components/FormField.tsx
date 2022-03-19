@@ -7,7 +7,7 @@ import {
   TextField as TextFieldMUI,
   Typography,
 } from "@material-ui/core";
-import { Diagnosis, Gender, HealthCheckRating } from "../types";
+import { Diagnosis, NewEntryType, Gender, HealthCheckRating } from "../types";
 import { InputLabel } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 
@@ -25,7 +25,15 @@ export interface RatingSelectOption extends BaseSelectFieldOption {
   value: HealthCheckRating;
 }
 
-export type SelectFieldOption = GenderSelectOption | RatingSelectOption;
+export interface TypeSelectOption extends BaseSelectFieldOption {
+  type: "type";
+  value: NewEntryType;
+}
+
+export type SelectFieldOption =
+  | GenderSelectOption
+  | RatingSelectOption
+  | TypeSelectOption;
 
 // props for select field component
 type SelectFieldProps = {
@@ -70,6 +78,7 @@ export const TextField = ({ field, label, placeholder }: TextProps) => (
       placeholder={placeholder}
       {...field}
     />
+    <div>aaaa{field.name}</div>
     <Typography variant="subtitle2" style={{ color: "red" }}>
       <ErrorMessage name={field.name} />
     </Typography>
