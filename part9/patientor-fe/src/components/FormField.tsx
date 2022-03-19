@@ -78,7 +78,6 @@ export const TextField = ({ field, label, placeholder }: TextProps) => (
       placeholder={placeholder}
       {...field}
     />
-    <div>aaaa{field.name}</div>
     <Typography variant="subtitle2" style={{ color: "red" }}>
       <ErrorMessage name={field.name} />
     </Typography>
