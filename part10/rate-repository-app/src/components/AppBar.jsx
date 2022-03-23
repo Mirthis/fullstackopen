@@ -16,8 +16,6 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const { data } = useQuery(ME);
   const username = data?.me ? data.me.username : null;
-  console.log(username);
-
   return (
     <View style={styles.container}>
       <ScrollView horizontal>

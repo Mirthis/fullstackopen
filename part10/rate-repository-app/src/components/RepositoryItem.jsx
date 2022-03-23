@@ -1,5 +1,6 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import theme from "../theme";
+import { parseStat } from "../utils/parseState";
 
 const repoInfoStyle = StyleSheet.create({
   container: {
@@ -79,17 +80,11 @@ const RepoInfo = ({ item }) => {
       </View>
       <View style={repoInfoStyle.infoContainer}>
         <Text style={repoInfoStyle.fullnameText}>{item.fullName}</Text>
-        <Text>Description: {item.description}</Text>
+        <Text>{item.description}</Text>
         <Text style={repoInfoStyle.languageText}>{item.language}</Text>
       </View>
     </View>
   );
-};
-
-const parseStat = (stat) => {
-  if (stat < 1000) return stat;
-  if (stat < 1000000) return (stat / 1000).toFixed(1) + "k";
-  else return (stat / 1000000).toFixed(1) + "M";
 };
 
 const RepoStats = ({ item }) => {
@@ -102,15 +97,15 @@ const RepoStats = ({ item }) => {
         <Text style={repoStatsStyle.statDesc}>Stars</Text>
       </View>
       <View style={repoStatsStyle.statContainer}>
-        <Text style={repoStatsStyle.stat}>{item.forksCount}</Text>
+        <Text style={repoStatsStyle.stat}>{parseStat(item.forksCount)}</Text>
         <Text style={repoStatsStyle.statDesc}>Forks</Text>
       </View>
       <View style={repoStatsStyle.statContainer}>
-        <Text style={repoStatsStyle.stat}>{item.reviewCount}</Text>
+        <Text style={repoStatsStyle.stat}>{parseStat(item.reviewCount)}</Text>
         <Text style={repoStatsStyle.statDesc}>Reviews</Text>
       </View>
       <View style={repoStatsStyle.statContainer}>
-        <Text style={repoStatsStyle.stat}>{item.ratingAverage}</Text>
+        <Text style={repoStatsStyle.stat}>{parseStat(item.ratingAverage)}</Text>
         <Text style={repoStatsStyle.statDesc}>Rating</Text>
       </View>
     </View>
@@ -119,7 +114,7 @@ const RepoStats = ({ item }) => {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={repoItemStyle.container}>
+    <View testID="repositoryItem" style={repoItemStyle.container}>
       <RepoInfo item={item} />
       <RepoStats item={item} />
     </View>
