@@ -1,6 +1,7 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import theme from "../theme";
 import { parseStat } from "../utils/parseState";
+import { openURL } from "expo-linking";
 
 const repoInfoStyle = StyleSheet.create({
   container: {
@@ -62,8 +63,21 @@ const repoStatsStyle = StyleSheet.create({
 const repoItemStyle = StyleSheet.create({
   container: {
     flexDirection: "column",
-    flexGrow: 1,
+    flexGrow: 0,
     backgroundColor: "white",
+    padding: 5,
+  },
+});
+
+const openGitHubStyle = StyleSheet.create({
+  button: {
+    backgroundColor: theme.colors.primary,
+    padding: 20,
+    textAlign: "center",
+  },
+  text: {
+    color: "white",
+    fontSize: 18,
   },
 });
 
@@ -112,11 +126,26 @@ const RepoStats = ({ item }) => {
   );
 };
 
-const RepositoryItem = ({ item }) => {
+const RepoLink = ({ url }) => {
+  return (
+    <View style={openGitHubStyle.button}>
+      <Pressable
+        onPress={() => {
+          openURL(url);
+        }}
+      >
+        <Text style={openGitHubStyle.text}>Open in GitHub</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+const RepositoryItem = ({ item, showLink = false }) => {
   return (
     <View testID="repositoryItem" style={repoItemStyle.container}>
       <RepoInfo item={item} />
       <RepoStats item={item} />
+      {showLink && <RepoLink url={item.url} />}
     </View>
   );
 };
