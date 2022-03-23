@@ -4,6 +4,8 @@ import Text from "./Text";
 import { View, Pressable, StyleSheet } from "react-native";
 import theme from "../theme";
 import * as yup from "yup";
+import { useSignIn } from "../hooks/useSignIn";
+import AuthStorage from "../utils/authStorage";
 
 const initialValues = {
   username: "",
@@ -32,11 +34,11 @@ const styles = StyleSheet.create({
 const validationSchema = yup.object().shape({
   username: yup
     .string()
-    .length(6, "Username must be at least 6 character long")
+    .min(3, "Username must be at least 6 character long")
     .required("Username is required"),
   password: yup
     .string()
-    .length(6, "Password must be at least 6 character long")
+    .min(6, "Password must be at least 6 character long")
     .required("Password is required"),
 });
 
@@ -62,9 +64,20 @@ const SignInForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values.username);
-    console.log(values.password);
+  const [signIn] = useSignIn();
+  const authStorage = new AuthStorage();
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      if (data) {
+        authStorage.setAccessToken(data.authenticate.accessToken);
+        console.log(await authStorage.getAccessToken());
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
