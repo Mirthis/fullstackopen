@@ -67,12 +67,16 @@ export class RepositoryListContainer extends React.Component {
     );
   };
 
+  componentWillUnmount() {
+    console.log("unmounting");
+  }
+
   render() {
     const repositoryNodes = this.props.repositories
       ? this.props.repositories.edges.map((edge) => edge.node)
       : [];
 
-    const navigate = this.props.navigate;
+    const { navigate, onEndReach } = this.props;
 
     const renderItem = ({ item }) => {
       return (
@@ -90,6 +94,8 @@ export class RepositoryListContainer extends React.Component {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           ListHeaderComponent={this.renderHeader}
+          onEndReached={onEndReach}
+          onEndReachedThreshold={5}
         />
       </>
     );

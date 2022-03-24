@@ -11,10 +11,16 @@ const renderReview = ({ item }) => {
 
 const RepositoryDetail = () => {
   const { id } = useParams();
-  const { data, loading } = useRepository(id);
-  if (loading || !data?.repository)
-    return <Text>Loading repository data...</Text>;
-  const repository = data.repository;
+  const { repository, loading, fetchMore } = useRepository({
+    repositoryId: id,
+    first: 5,
+  });
+
+  const onEndReach = () => {
+    fetchMore();
+  };
+
+  if (loading || !repository) return <Text>Loading repository data...</Text>;
 
   const reviewNodes = repository
     ? repository.reviews.edges.map((edge) => edge.node)
@@ -28,6 +34,8 @@ const RepositoryDetail = () => {
         ItemSeparatorComponent={ItemSeparator}
         renderItem={renderReview}
         keyExtractor={(item) => item.id}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     </View>
   );
