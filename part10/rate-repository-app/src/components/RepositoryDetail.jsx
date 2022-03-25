@@ -1,24 +1,15 @@
 import useRepository from "../hooks/useRepository";
-import { Text, View, FlatList } from "react-native";
+import { Text, View } from "react-native";
 import RepositoryItem from "./RepositoryItem";
 import { useParams } from "react-router-native";
-import ItemSeparator from "./ItemSeparator";
-import ReviewItem from "./ReviewItem";
-
-const renderReview = ({ item }) => {
-  return <ReviewItem review={item} />;
-};
+import ReviewList from "./ReviewList";
 
 const RepositoryDetail = () => {
   const { id } = useParams();
   const { repository, loading, fetchMore } = useRepository({
     repositoryId: id,
-    first: 5,
+    first: 1,
   });
-
-  const onEndReach = () => {
-    fetchMore();
-  };
 
   if (loading || !repository) return <Text>Loading repository data...</Text>;
 
@@ -29,14 +20,7 @@ const RepositoryDetail = () => {
   return (
     <View>
       <RepositoryItem item={repository} showLink={true} />
-      <FlatList
-        data={reviewNodes}
-        ItemSeparatorComponent={ItemSeparator}
-        renderItem={renderReview}
-        keyExtractor={(item) => item.id}
-        onEndReached={onEndReach}
-        onEndReachedThreshold={0.5}
-      />
+      <ReviewList reviews={reviewNodes} fetchMore={fetchMore} />
     </View>
   );
 };

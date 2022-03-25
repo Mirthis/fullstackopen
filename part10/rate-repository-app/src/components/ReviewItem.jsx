@@ -38,14 +38,17 @@ const reviewStyle = StyleSheet.create({
   },
 });
 
-const ReviewItem = ({ review }) => {
+const ReviewItem = ({ review, type = "GLOBAL" }) => {
+  const reviewHeading =
+    type !== "USER" ? review.user.username : review.repository.name;
+
   return (
     <View style={reviewStyle.container}>
       <View style={reviewStyle.reviewRatingContainer}>
         <Text style={reviewStyle.reviewRatingText}>{review.rating}</Text>
       </View>
       <View style={reviewStyle.reviewDataContainer}>
-        <Text style={reviewStyle.usernameText}>{review.user.username}</Text>
+        <Text style={reviewStyle.usernameText}>{reviewHeading}</Text>
         <Text>{format(Date.parse(review.createdAt), "dd.MM.yyyy")}</Text>
         <Text style={reviewStyle.reviewText}>{review.text}</Text>
       </View>

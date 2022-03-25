@@ -106,9 +106,32 @@ export const SIGN_IN = gql`
 `;
 
 export const ME = gql`
-  query {
+  query ($includeReviews: Boolean = false, $after: String, $first: Int) {
     me {
       username
+      reviews(first: $first, after: $after) @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+            repository {
+              name
+            }
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+        }
+      }
     }
   }
 `;
