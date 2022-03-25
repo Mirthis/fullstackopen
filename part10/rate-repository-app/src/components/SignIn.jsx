@@ -92,11 +92,11 @@ const SignIn = () => {
   };
 
   return (
-    <div>
+    <View>
       <SignInContainer onSubmit={onSubmit} />
       {loading && <Text>Authenticating</Text>}
       {error && <Text>{error}</Text>}
-    </div>
+    </View>
   );
 };
 

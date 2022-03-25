@@ -122,6 +122,7 @@ export const ME = gql`
             }
             repository {
               name
+              url
             }
           }
           cursor
@@ -133,5 +134,11 @@ export const ME = gql`
         }
       }
     }
+  }
+`;
+
+export const DELETE_REVIEW = gql`
+  mutation DeleteReview($deleteReviewId: ID!) {
+    deleteReview(id: $deleteReviewId)
   }
 `;

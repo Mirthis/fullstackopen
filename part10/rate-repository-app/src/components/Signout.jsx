@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-native";
 import useAuthStorage from "../hooks/useAuthStorage";
 import { useApolloClient } from "@apollo/client";
 import { useEffect } from "react";
+import { View, Text } from "react-native";
+
 const SignOut = () => {
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
@@ -12,7 +14,11 @@ const SignOut = () => {
   });
 
   useEffect(() => navigate("/", { replace: true }), []);
-  return <div>Signign out...</div>;
+  return (
+    <View>
+      <Text>Signign out...</Text>
+    </View>
+  );
 };
 
 export default SignOut;

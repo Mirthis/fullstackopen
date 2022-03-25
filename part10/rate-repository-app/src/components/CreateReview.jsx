@@ -103,7 +103,7 @@ const CreateReview = () => {
   };
 
   return (
-    <div>
+    <View>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -113,7 +113,7 @@ const CreateReview = () => {
       </Formik>
       {loading && <Text>Submitting review...</Text>}
       {error && <Text>{error}</Text>}
-    </div>
+    </View>
   );
 };
 

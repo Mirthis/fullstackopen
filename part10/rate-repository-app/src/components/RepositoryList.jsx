@@ -1,4 +1,4 @@
-import { FlatList, Pressable, View, StyleSheet } from "react-native";
+import { FlatList, Pressable, View, StyleSheet, Text } from "react-native";
 import RepositoryItem from "./RepositoryItem";
 import useRepositories from "../hooks/useRepositories";
 import { useNavigate } from "react-router-native";
@@ -109,7 +109,7 @@ const RepositoryList = () => {
   const [keywordValue] = useDebounce(searchKeyword, 1000);
   //const navigate = useNavigate();
 
-  const { repositories, loading, fetchMore } = useRepositories({
+  const { repositories, loading, error, fetchMore } = useRepositories({
     orderBy,
     orderDirection,
     searchKeyword: keywordValue,
@@ -119,7 +119,15 @@ const RepositoryList = () => {
     fetchMore();
   };
 
-  if (loading) return <div>Loading repositories...</div>;
+  if (loading)
+    return (
+      <View>
+        <Text>Loading repositories...</Text>
+      </View>
+    );
+
+  if (error) console.log(error);
+
   return (
     <RepositoryListContainer
       repositories={repositories}

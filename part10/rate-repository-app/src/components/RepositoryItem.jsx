@@ -126,15 +126,20 @@ const RepoStats = ({ item }) => {
   );
 };
 
-const RepoLink = ({ url }) => {
+export const RepoLink = ({
+  url,
+  text = "Open in GitHub",
+  buttonStyle = {},
+  textStyle = {},
+}) => {
   return (
-    <View style={openGitHubStyle.button}>
+    <View style={[openGitHubStyle.button, buttonStyle]}>
       <Pressable
         onPress={() => {
           openURL(url);
         }}
       >
-        <Text style={openGitHubStyle.text}>Open in GitHub</Text>
+        <Text style={[openGitHubStyle.text, textStyle]}>{text}</Text>
       </Pressable>
     </View>
   );
