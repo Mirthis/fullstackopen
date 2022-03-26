@@ -7,27 +7,36 @@ import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import TextInput from "./TextInput";
 import { useDebounce } from "use-debounce/lib";
+import { Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
   controlsContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     padding: 5,
     flexShrink: 1,
+  },
+  selectContainer: {
+    flexDirection: "row",
+    flexShrink: 1,
+    //margin: 5,
   },
   pickerContainer: {
     margin: 5,
     flexGrow: 1,
     padding: 5,
+    flexShrink: 1,
   },
   textinput: {
     borderWidth: 1,
     borderColor: "black",
     //marginBottom: 20,
     backgroundColor: "white",
-    margin: 5,
+    //margin: 5,
     flexGrow: 1,
     padding: 5,
-    width: 100,
+    margin: 5,
+
+    //width: 100,
   },
 });
 
@@ -49,9 +58,10 @@ export const RepositoryListContainer = ({
       </Pressable>
     );
   };
+  const { height } = Dimensions.get("window");
 
   return (
-    <>
+    <View style={{ flexGrow: 1, height: height }}>
       <FlatList
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
@@ -61,7 +71,7 @@ export const RepositoryListContainer = ({
         onEndReached={onEndReach}
         onEndReachedThreshold={0.5}
       />
-    </>
+    </View>
   );
 };
 
@@ -76,28 +86,30 @@ const ListControls = ({ controls }) => {
   } = controls;
   return (
     <View style={styles.controlsContainer}>
-      <Picker
-        selectedValue={orderBy}
-        onValueChange={(itemValue) => setOrderBy(itemValue)}
-        style={styles.pickerContainer}
-      >
-        <Picker.Item label="Last review date" value="CREATED_AT" />
-        <Picker.Item label="Average Rating" value="RATING_AVERAGE" />
-      </Picker>
-      <Picker
-        style={styles.pickerContainer}
-        selectedValue={orderDirection}
-        onValueChange={(itemValue) => setOrderDirection(itemValue)}
-      >
-        <Picker.Item label="Ascending" value="ASC" />
-        <Picker.Item label="Descending" value="DESC" />
-      </Picker>
       <TextInput
         style={styles.textinput}
         name={searchKeyword}
         placeholder="Search"
         onChange={(event) => setSearchKeyword(event.target.value)}
       />
+      <View style={styles.selectContainer}>
+        <Picker
+          selectedValue={orderBy}
+          onValueChange={(itemValue) => setOrderBy(itemValue)}
+          style={styles.pickerContainer}
+        >
+          <Picker.Item label="Last review" value="CREATED_AT" />
+          <Picker.Item label="Avg. Rating" value="RATING_AVERAGE" />
+        </Picker>
+        <Picker
+          style={styles.pickerContainer}
+          selectedValue={orderDirection}
+          onValueChange={(itemValue) => setOrderDirection(itemValue)}
+        >
+          <Picker.Item label="Ascending" value="ASC" />
+          <Picker.Item label="Descending" value="DESC" />
+        </Picker>
+      </View>
     </View>
   );
 };

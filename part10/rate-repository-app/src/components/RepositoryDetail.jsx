@@ -8,7 +8,7 @@ const RepositoryDetail = () => {
   const { id } = useParams();
   const { repository, loading, fetchMore } = useRepository({
     repositoryId: id,
-    first: 1,
+    first: 5,
   });
 
   if (loading || !repository) return <Text>Loading repository data...</Text>;

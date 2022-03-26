@@ -98,7 +98,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <View>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -108,7 +108,7 @@ const SignUp = () => {
       </Formik>
       {loading && <Text>Authenticating</Text>}
       {error && <Text>{error}</Text>}
-    </div>
+    </View>
   );
 };
 

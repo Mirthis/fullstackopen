@@ -64,12 +64,12 @@ const style = StyleSheet.create({
 });
 
 const ReviewItem = ({ review, type = "GLOBAL" }) => {
-  const [deleteReview, result] = useDeleteReview(review.id);
+  const [deleteReview] = useDeleteReview();
 
   const reviewHeading =
     type !== "USER" ? review.user.username : review.repository.name;
 
-  const createDeleteAlert = (reviewRepo) =>
+  const createDeleteAlert = (reviewRepo, reviewId) =>
     Alert.alert(
       "Delete review",
       `Do you want to delete review for repository ${reviewRepo}?`,
@@ -77,15 +77,13 @@ const ReviewItem = ({ review, type = "GLOBAL" }) => {
         {
           text: "Cancel",
           onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
         },
-        { text: "OK", onPress: () => handleDelete() },
+        { text: "OK", onPress: () => handleDelete(reviewId) },
       ]
     );
 
-  const handleDelete = async () => {
-    await deleteReview();
-    console.log(result);
+  const handleDelete = async (reviewId) => {
+    await deleteReview(reviewId);
   };
 
   return (
@@ -109,7 +107,9 @@ const ReviewItem = ({ review, type = "GLOBAL" }) => {
           />
           <View style={style.deleteButton}>
             <Pressable
-              onPress={() => createDeleteAlert(review.repository.name)}
+              onPress={() =>
+                createDeleteAlert(review.repository.name, review.id)
+              }
             >
               <Text style={style.deleteText}>Deelete Review</Text>
             </Pressable>

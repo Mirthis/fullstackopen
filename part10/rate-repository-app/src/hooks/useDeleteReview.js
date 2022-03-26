@@ -1,8 +1,10 @@
 import { useMutation } from "@apollo/client";
-import { DELETE_REVIEW } from "../graphql/queries";
+import { DELETE_REVIEW, ME } from "../graphql/queries";
 
 export const useDeleteReview = () => {
-  const [mutate, result] = useMutation(DELETE_REVIEW);
+  const [mutate, result] = useMutation(DELETE_REVIEW, {
+    refetchQueries: [ME],
+  });
 
   const deleteReview = async (deleteReviewId) => {
     const { data } = await mutate({
