@@ -11,7 +11,7 @@ const RepositoryDetail = () => {
     first: 5,
   });
 
-  if (loading || !repository) return <Text>Loading repository data...</Text>;
+  if (loading && !repository) return <Text>Loading repository data...</Text>;
 
   const reviewNodes = repository
     ? repository.reviews.edges.map((edge) => edge.node)

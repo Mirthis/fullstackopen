@@ -21,7 +21,7 @@ const ReviewList = ({ reviews, fetchMore, type = "GLOBAL" }) => {
         renderItem={(item) => renderReview({ item: item.item, type: type })}
         keyExtractor={(item) => item.id}
         onEndReached={onEndReach}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.3}
       />
     </View>
   );

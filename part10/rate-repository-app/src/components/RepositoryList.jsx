@@ -125,13 +125,14 @@ const RepositoryList = () => {
     orderBy,
     orderDirection,
     searchKeyword: keywordValue,
-    first: 10,
+    first: 5,
   });
+
   const onEndReach = () => {
     fetchMore();
   };
 
-  if (loading)
+  if (loading && !repositories)
     return (
       <View>
         <Text>Loading repositories...</Text>
