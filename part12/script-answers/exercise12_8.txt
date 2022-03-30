@@ -1,0 +1,99 @@
+Script started on 2022-03-29 11:47:42+01:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="120" LINES="30"]
+]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ code .d full-stack-open-pokedex/git clone https://github.com/Mirthis/full-stack-open-pokedex.git[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ cd ..[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfso-repo/ullstackopen/~[Kdocker start -i jolly_mestorf [4@container rm[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cimage ls[Kcommit jolly_mestorf hello-node-world[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [C[C[C[C[C[C[Cimage ls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccontainer rm jolly_mestorf [4Pstart -i[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccd ~[Kfullstackopen/[5Pso-repo/..[Kgit clone https://github.com/Mirthis/full-stack-open-pokedex.git[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [8Pcd full-stack-open-pokedex/
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Code .[K[Kcode .d full-stack-open-pokedex/ode .[K[Kcode .d full-stack-open-pokedex/git clone https://github.com/Mirthis/full-stack-open-pokedex.git[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ cd ..[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfso-repo/ullstackopen/~[Kdocker start -i jolly_mestorf [4@container rm[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cimage ls[Kcommit jolly_mestorf hello-node-world[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [C[C[C[C[C[C[C[C[C[13Pntainer ls -a
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccp typescript script-answers/exercise12_4.txt3.txt[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [Cd ~/fullstackopen/fso-part12-contai[4Pners/[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ script[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker start -i jolly_mestorf script[Kcd ~/fullstackopen/fso-part12-containers/[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [Cp typescript script-answers/exercise12_3.txt4.txt[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [13Pdocker container ls -a
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmmit jolly_mestorf hello-node-world[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [C[C[C[C[C[C[Cimage ls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccontainer rm jolly_mestorf [4Pstart -i[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccd ~[Kfullstackopen/[5Pso-repo/..[Kgit clone https://github.com/Mirthis/full-stack-open-pokedex.git[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [8Pcd full-stack-open-pokedex/
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Code .[K[Kdocker-compose -f docker-compose.dev.yml up -d
+Creating network "todo-backend_default" with the default driver
+Creating todo-backend_mongo_1 ... 
+[1A[2KCreating todo-backend_mongo_1 ... [32mdone[0m[1B]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ docker com[K[K[Kcontainer ls
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS         PORTS                                         NAMES
+838ef4b12095   mongo     "docker-entrypoint.s…"   10 seconds ago   Up 9 seconds   0.0.0.0:3456->27017/tcp, :::3456->27017/tcp   todo-backend_mongo_1
+]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ docj[Kjer[K[K[Kker exc[Kec -i[Klt[K[Kit todo-backend_mongo_1 bash
+]0;root@838ef4b12095: /root@838ef4b12095:/# mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("ae37fd46-4bad-42c8-b07d-a5cab3e4bcc5") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+	https://community.mongodb.com
+> show dbs[3G[Jshow dbs[11G
+> exit[3G[Jexit[7G
+bye
+]0;root@838ef4b12095: /root@838ef4b12095:/# mongon  -y u root -p example
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("9996968c-24b5-4456-99cd-5e7e3834dbb5") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting: 
+        2022-03-29T10:48:49.134+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2022-03-29T10:48:49.829+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs[3G[Jshow dbs[11G
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+the_database  0.000GB
+> use the_database[3G[Juse the_database[19G
+switched to db the_database
+> db.todo.find()[3G[Jdb.todo.find()[17G
+> [3G[Jdb.todo.find()[17G[3G[Jdb.todo.find[1;34m([0m)[16G[3G[Jdb.todo.find([1;34m)[0m[15G[3G[Jdb.todo.find()[14G[3G[Jdb.todo.find()[13G[3G[Jdb.todo.find()[12G[3G[Jdb.todo.find()[11G[3G[Jdb.todo.find()[10G[3G[Jdb.todos.find()[11G[3G[Jdb.todos.find()[18G
+{ "_id" : ObjectId("6242dc9064d383246560f28c"), "text" : "Updated todo text", "done" : false }
+{ "_id" : ObjectId("6242dc9064d383246560f28d"), "text" : "Learn about containers", "done" : false }
+> db.todos.insertOne({});[3G[Jdb.todos.insertOne({});[25G[3G[Jdb.todos.insertOne[1;34m([0m{});[24G[3G[Jdb.todos.insertOne([1;34m{[0m});[23G[3G[Jdb.todos.insertOne([1;34m{[0mt});[24G[3G[Jdb.todos.insertOne([1;34m{[0mte});[25G[3G[Jdb.todos.insertOne([1;34m{[0mtex});[26G[3G[Jdb.todos.insertOne([1;34m{[0mtext});[27G[3G[Jdb.todos.insertOne([1;34m{[0mtext:});[28G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"});[29G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"I});[30G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"In});[31G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Inc});[32G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Incr});[33G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Incre});[34G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increa});[35G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increas});[36G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase});[37G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase });[38G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase t});[39G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase th});[40G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the});[41G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the });[42G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the n});[43G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the nu});[44G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the num});[45G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the numb});[46G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the numbe});[47G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number});[48G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number });[49G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number o});[50G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of});[51G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of });[52G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of t});[53G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of to});[54G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of too});[55G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tool});[56G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools});[57G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools });[58G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools i});[59G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in});[60G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in });[61G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in m});[62G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my});[63G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my });[64G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my t});[65G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my to});[66G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my too});[67G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my tool});[68G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolb});[69G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbe});[70G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbel});[71G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt});[72G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt"});[73G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt",});[74G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", });[75G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", d});[76G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", do});[77G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", don});[78G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done});[79G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done:});[80G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done:f});[81G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done:fa});[82G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done:fal});[83G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done:fals});[84G[3G[Jdb.todos.insertOne([1;34m{[0mtext:"Increase the number of tools in my toolbelt", done:false});[85G[3G[Jdb.todos.insertOne[1;34m([0m{text:"Increase the number of tools in my toolbelt", done:false});[86G[3G[Jdb.todos.insertOne({text:"Increase the number of tools in my toolbelt", done:false});[87G[3G[Jdb.todos.insertOne({text:"Increase the number of tools in my toolbelt", done:false});[88G[3G[Jdb.todos.insertOne({text:"Increase the number of tools in my toolbelt", done:false});[88G
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("6242e4ee807a606e1a373dfd")
+}
+> [3G[Jdb.todos.insertOne({text:"Increase the number of tools in my toolbelt", done:false});[88G[3G[Jdb.todos.find()[18G[3G[Jdb.todos.find()[18G
+{ "_id" : ObjectId("6242dc9064d383246560f28c"), "text" : "Updated todo text", "done" : false }
+{ "_id" : ObjectId("6242dc9064d383246560f28d"), "text" : "Learn about containers", "done" : false }
+{ "_id" : ObjectId("6242e4ee807a606e1a373dfd"), "text" : "Increase the number of tools in my toolbelt", "done" : false }
+> exit[3G[Jexit[7G
+bye
+]0;root@838ef4b12095: /root@838ef4b12095:/# exit
+exit
+]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ exit[K[K[K[Kdocker exec -it todo-backend_mongo_1 bash[A]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ [K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdocker-compose -f docker-compose.dev.yml down --volumes
+Stopping todo-backend_mongo_1 ... 
+[1A[2KStopping todo-backend_mongo_1 ... [32mdone[0m[1BRemoving todo-backend_mongo_1 ... 
+[1A[2KRemoving todo-backend_mongo_1 ... [32mdone[0m[1BRemoving network todo-backend_default
+]0;mirthis@DESKTOP-FE8M7DP: ~/fullstackopen/fso-part12-containers/todo-app/todo-backend[01;32mmirthis@DESKTOP-FE8M7DP[00m:[01;34m~/fullstackopen/fso-part12-containers/todo-app/todo-backend[00m$ exit
+exit
+
+Script done on 2022-03-29 11:53:39+01:00 [COMMAND_EXIT_CODE="0"]
