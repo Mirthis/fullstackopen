@@ -1,0 +1,38 @@
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "Arto",
+  "name": "Arto Hellas",
+  "password": "ArtoPassword"
+}
+
+###
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "Matti",
+  "name": "Matti Luukkainen",
+  "password": "MattiPassword"
+}
+
+###
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "username": "Venla",
+  "name": "Venla Ruuska",
+  "password": "VenlaPassword"
+}
+
+### duplicate
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "username": "root",
+  "name": "root",
+  "password": "iamtherootuser"
+}
