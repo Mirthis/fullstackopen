@@ -1,0 +1,17 @@
+POST http://localhost:3001/api/readinglists/1
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pcnRvQHRlc3QuY29tcyIsImlkIjoxLCJpYXQiOjE2NDg5OTMzMTF9.bbhq0CjO7jFAShyJYMO2kTSRZKEx8y2inr2Hj_dxMuM
+
+{
+  "read": "true"
+}
+
+###
+POST http://localhost:3001/api/readinglists/1
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1pcnRvQHRlc3QuY29tcyIsImlkIjoxLCJkYXRlIjoiMjAyMi0wNC0wNFQxMzo0MTo1NS43MDhaIiwiaWF0IjoxNjQ5MDc5NzE1fQ.luiZv6Bu5B08rqdW1y5TN4xzcBj91YxKwBGH10muufA
+
+{
+
+  "read": "false"
+}

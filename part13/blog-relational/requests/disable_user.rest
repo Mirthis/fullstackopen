@@ -1,0 +1,6 @@
+POST http://localhost:3001/api/users/1/disable
+Content-Type: application/json
+
+{
+  "disabled": false
+}

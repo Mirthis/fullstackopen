@@ -1,0 +1,16 @@
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "name": "Mirto",
+  "username": "mirto@test.coms"
+}
+
+###
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "name": "Admin",
+  "username": "admin@test.coms"
+}
