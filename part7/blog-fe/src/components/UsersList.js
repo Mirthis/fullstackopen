@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 import { DataGrid } from '@mui/x-data-grid'
 
@@ -39,7 +38,7 @@ const UsersList = () => {
             rowsPerPageOptions={[5]}
           />
 
-          <table>
+          {/* <table>
             <tbody>
               {users.map(u => (
                 <tr key={u.id}>
@@ -50,7 +49,7 @@ const UsersList = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
         </div>
       )}
     </div>
